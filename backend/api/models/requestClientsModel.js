@@ -27,6 +27,7 @@ const RequestClients = db.define("RequestClients", {
   },
   request_id: {
     type: DataTypes.INTEGER,
+    unique: true,
     // Foreign key referencing the Request table
   },
   isEmailSent: {
@@ -34,7 +35,7 @@ const RequestClients = db.define("RequestClients", {
     defaultValue: false,
   },
   createdBy: {
-    type: DataTypes.UUID,
+    type: DataTypes.STRING,
     // Foreign key referencing the User table
   },
   createdDate: {
@@ -50,11 +51,11 @@ RequestClients.belongsTo(Request, {
 });
 
 // Assuming User is the model for the user table
-RequestClients.belongsTo(User, {
+/*RequestClients.belongsTo(User, {
   foreignKey: "createdBy",
   targetKey: "user_uuid", // Assuming 'id' is the primary key of the User table
   as: "creator",
-});
+});*/
 
 // Sync the model with the database
 RequestClients.sync({ alter: true })

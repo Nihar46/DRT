@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import db from "../../connection/sequelizePostgres.js";
-
 import Request from "./requestModel.js"; // Import the Request model for association
 import User from "./userModel.js";
 
@@ -14,6 +13,7 @@ const RequestHistory = db.define("RequestHistories", {
   },
   request_id: {
     type: DataTypes.INTEGER,
+    unique: true,
     // Foreign key referencing the Request table
   },
   activity: {
@@ -23,7 +23,7 @@ const RequestHistory = db.define("RequestHistories", {
     type: DataTypes.STRING,
   },
   createdBy: {
-    type: DataTypes.UUID,
+    type: DataTypes.STRING,
     // Foreign key referencing the User table
   },
   createdDate: {
@@ -38,11 +38,11 @@ RequestHistory.belongsTo(Request, {
   as: "request",
 });
 // Assuming User is the model for the user table
-RequestHistory.belongsTo(User, {
+/*RequestHistory.belongsTo(User, {
   foreignKey: "createdBy",
   targetKey: "user_uuid", // Assuming 'id' is the primary key of the User table
   as: "creator",
-});
+});*/
 
 // Sync the model with the database
 RequestHistory.sync({ alter: true })

@@ -31,6 +31,7 @@ const Project = db.define("Projects", {
   },
   request_number: {
     type: DataTypes.STRING,
+    unique: true,
   },
   brand: {
     type: DataTypes.STRING,

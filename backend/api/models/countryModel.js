@@ -3,7 +3,7 @@ import { DataTypes } from "sequelize";
 import User from "./userModel.js"; // Import the User model for association
 import CountryMaster from "./countryMasterModel.js"; // Import the CountryMaster model for association
 
-const Country = db.define("Countrys", {
+const Country = db.define("Countries", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

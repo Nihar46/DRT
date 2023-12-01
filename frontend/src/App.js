@@ -1,12 +1,23 @@
 import "./App.css";
+import AppRouteMain from "./routes/index";
+import { BrowserRouter } from "react-router-dom";
+import { Suspense } from "react";
+import Loader from "./components/Loader/Loader";
+import { ToastContainer } from "react-toastify";
+import { StyledEngineProvider } from "@mui/material";
+import "react-toastify/dist/ReactToastify.css";
+//import "../src/global.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello</h1>
-      </header>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <BrowserRouter>
+        <Suspense fallback={<Loader />}>
+          <AppRouteMain />
+          <ToastContainer />
+        </Suspense>
+      </BrowserRouter>
+    </StyledEngineProvider>
   );
 }
 

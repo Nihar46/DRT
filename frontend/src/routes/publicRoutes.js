@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Auth = lazy(() => import("../screens/Auth"));
+const Login = lazy(() => import("../screens/Auth/Login"));
 
 const PublicRoute = ({ as: Component, ...props }) => {
   const navigate = useNavigate();
@@ -11,7 +12,12 @@ const PublicRoute = ({ as: Component, ...props }) => {
   return <Component {...props} />;
 };
 
-const authNav = [];
+const authNav = [
+  {
+    path: "/",
+    element: <Login />,
+  },
+];
 
 const publicRoutes = [
   {

@@ -3,7 +3,7 @@ import db from "../../connection/sequelizePostgres.js";
 import User from "./userModel.js"; // Import the User model for association
 import Project from "./projectModel.js"; // Import the Project model for association
 
-const Request = db.define("Request", {
+const Request = db.define("Requests", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -13,6 +13,7 @@ const Request = db.define("Request", {
   request_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    unique: true,
     // foreign key referencing the country master table
   },
   design_file_link: {
@@ -23,6 +24,7 @@ const Request = db.define("Request", {
   },
   request_number: {
     type: DataTypes.STRING,
+    unique: true,
     // Foreign key referencing the Project table
   },
   _2d_count: {
