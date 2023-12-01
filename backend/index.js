@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import sequelize from "./connection/sequelizePostgres.js";
 import "./api/models/index.js";
-//import routes from "./api/routes";
+import routes from "./api/routes/index.js";
 import session from "express-session";
 import dotenv from "dotenv";
 dotenv.config();
@@ -39,6 +39,8 @@ sequelize
   .authenticate()
   .then(() => console.log("Connnected to DB successfully!!"))
   .catch((error) => console.log("Error has occurred:", error));
+
+routes(app);
 
 app.listen(process.env.APP_PORT, () => {
   console.log("Listening on port:", process.env.APP_PORT);

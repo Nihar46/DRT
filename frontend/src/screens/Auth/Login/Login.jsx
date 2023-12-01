@@ -57,7 +57,10 @@ const Login = () => {
       </form>
 
       <div>
-        <a href="/forgot-password">Forgot password?</a>
+        <a href="/forgot-password">Forgot password Link</a>
+      </div>
+      <div>
+        <a href="/reset-password">Reset password Link</a>
       </div>
     </div>
   );
