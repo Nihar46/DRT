@@ -1,46 +1,9 @@
-.social-button-container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+.LoginHeading {
+  margin-bottom: 25px;
 }
-
-.google-login-button {
-  background-color:#DB4437;
-  border: 1px solid #dddddd;
-  padding: 10px 20px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  justify-content: center;
+.InputButtonBox {
+  margin-bottom: 40px;
 }
+.ForgotLink {
 
-.google-logo {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-}
-
-.facebook-login-button {
-  margin-top: 10px;
-  background-color: #1877F2;
-  border: 1px solid #dddddd;
-  padding: 10px 20px;
-  border-radius: 25px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  justify-content: center;
-}
-
-.facebook-logo {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
 }

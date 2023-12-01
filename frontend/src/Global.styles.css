@@ -1,0 +1,31 @@
+.LoginLeftCol {
+  background-color: #DAAA02;
+}
+.LoginWrapper {
+  height: 100%;
+  align-items: center;
+  display: flex;
+  padding: 30px;
+}
+.InputFldBox {
+  margin-bottom: 20px;
+}
+.MuiInputBase-root.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: transparent;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: transparent;
+}
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline:hover {
+  border-color: transparent;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  
+}
+@media screen and (min-device-width: 320px) and (max-device-width: 360px) {
+ 
+}
+@media screen and (min-device-width: 320px) and (max-device-width: 767px) {
+
+}
