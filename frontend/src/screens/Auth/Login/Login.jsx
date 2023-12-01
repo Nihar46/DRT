@@ -129,9 +129,9 @@ const Login = () => {
                 <Link href="/forgot-password" className="ForgotLink">
                   Forgot password?
                 </Link>
-                <Link href="/reset-password" className="ForgotLink">
+                {/* <Link href="/reset-password" className="ForgotLink">
                   Reset password
-                </Link>
+                </Link> */}
               </Grid>
             </Grid>
           </form>
