@@ -16,8 +16,8 @@ const theme = createTheme({
     fontFamily: ['Poppins', 'sans-serif'].join(','),
     h1: {
       fontSize: 34,
-      fontWeight: 700,
-      color: 'rgba(0, 0, 0, 0.87)',
+      fontWeight: 400,
+      color: '#003057',
       wordBreak: 'break-word',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
         fontSize: 34,
@@ -39,43 +39,43 @@ const theme = createTheme({
       },
     },
     h3: {
-      fontSize: 24,
-      fontWeight: 700,
-      color: 'rgba(0, 0, 0, 0.87)',
-      wordBreak: 'break-word',
-      '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
-        fontSize: 23,
-      },
-      '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
-        fontSize: 21,
-      },
-    },
-    h4: {
       fontSize: 20,
       fontWeight: 700,
       color: 'rgba(0, 0, 0, 0.87)',
       wordBreak: 'break-word',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
-        fontSize: 19,
+        fontSize: 20,
       },
       '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
-        fontSize: 17,
+        fontSize: 20,
       },
     },
-    h5: {
+    h4: {
       fontSize: 18,
       fontWeight: 700,
       color: 'rgba(0, 0, 0, 0.87)',
       wordBreak: 'break-word',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
-        fontSize: 17,
+        fontSize: 18,
+      },
+      '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
+        fontSize: 18,
+      },
+    },
+    h5: {
+      fontSize: 16,
+      fontWeight: 400,
+      color: 'rgba(0, 0, 0, 0.87)',
+      wordBreak: 'break-word',
+      '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
+        fontSize: 16,
       },
       '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
         fontSize: 16,
       },
     },
     h6: {
-      fontSize: 16,
+      fontSize: 15,
       fontWeight: 600,
       color: 'rgba(0, 0, 0, 0.87)',
       wordBreak: 'break-word',
@@ -195,10 +195,10 @@ const theme = createTheme({
             }),
           ...(ownerState.variant === 'contained' &&
             ownerState.color === 'secondary' && {
-              backgroundColor: '#E53451',
+              backgroundColor: '#DAAA02',
               boxShadow: 'none',
-              color: '#fff',
-              border: '1px solid #E53451',
+              color: '#003057',
+              border: '1px solid #DAAA02',
               textTransform: 'uppercase',
             }),
           ...(ownerState.variant === 'outlined' &&

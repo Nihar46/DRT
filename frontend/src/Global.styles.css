@@ -15,6 +15,48 @@ body {
   align-items: center;
   justify-content: center;
 }
+.BannerImg2Container {
+  display: flex;
+  justify-content: right;
+}
+.BannerImg2Container .MuiGrid-root {
+  margin-right: 40px;
+}
+.BannerImg4 {
+  margin-right: 40px;
+  margin-bottom: 40px;
+  margin-top: 70px;
+}
+.BannerImg1 {
+  margin-bottom: 40px;
+}
+.HomeMainHeading {
+  padding-left: 40px;
+  margin-bottom: 40px;
+}
+.DesignImgBox img, .BannerImg1 img,
+.BannerImg2 img,
+.BannerImg4 img,
+.BannerImg5 img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 7px 8px -4px rgba(0, 0, 0, 0.20), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+}
+.BannerImg1 img {
+  border-radius: 0 20px 20px 0;
+}
+.BannerImg5 img {
+  border-radius: 20px 0 0 0;
+}
+.BannerImg5Container {
+  display: flex;
+  justify-content: flex-end;
+}
+.HomeMidCol {
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .CustomError {
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
@@ -57,8 +99,21 @@ body {
 .InputButtonBox {
   margin-bottom: 40px;
 }
-.ForgotLink {}
-
+.HomeSubTitle {
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+    margin-bottom: 40px;
+}
+.HomeSubTitle .MuiTypography-root {
+  margin-right: 15px;
+}
+.HomePageContainer {
+  padding-top: 80px;
+  min-height: calc(100vh - 60px);
+  background: url(assets/images/banner-img-6.jpg) no-repeat bottom right;
+    background-size: 30%;
+}
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   
 }

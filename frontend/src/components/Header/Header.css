@@ -3,13 +3,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #333;
+  padding: 10px 20px;
+  background-color: #003057;
   color: white;
 }
 
 .logo {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 
 nav {
@@ -19,4 +21,7 @@ nav {
 
 button {
   margin-left: 10px;
+}
+.LogoImg {
+  margin-right: 40px;
 }
