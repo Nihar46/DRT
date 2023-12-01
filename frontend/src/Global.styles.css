@@ -1,14 +1,46 @@
-.LoginLeftCol {
-  background-color: #DAAA02;
+body {
+  margin: 0px;
+    height: 100%;
 }
-.LoginWrapper {
+#root {
+  height: 100%;
+}
+.LoginLeftCol {
+  background: url(assets/images/login-banner.jpg) no-repeat #DAAA02;
+  background-size: contain;
+}
+.LoginRightCol {
+  display: flex;
   height: 100%;
   align-items: center;
-  display: flex;
+  justify-content: center;
+}
+.CustomError {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  margin-top: 8px;
+  margin-left: 0;
+  padding-left: 24px;
+  background-image: url(assets/images/Error-Icon.svg);
+  background-repeat: no-repeat;
+  background-position: left 2px;
+}
+.Fullheight {
+  height: 100vh;
+}
+.LoginWrapper {
   padding: 30px;
+  width: 100%;
+}
+.ContentWrapper {
+  height: 100vh;
 }
 .InputFldBox {
   margin-bottom: 20px;
+}
+.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-shrink {
+  /* transform: translate(14px, -20px) scale(0.75); */
+  background: #fff;
 }
 .MuiInputBase-root.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
   border-color: transparent;
@@ -19,6 +51,13 @@
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline:hover {
   border-color: transparent;
 }
+.LoginHeading {
+  margin-bottom: 25px;
+}
+.InputButtonBox {
+  margin-bottom: 40px;
+}
+.ForgotLink {}
 
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   

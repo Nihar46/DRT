@@ -18,7 +18,7 @@ function App() {
         <ThemeProvider theme={Theme}>
         <Suspense fallback={<Loader />}>
           <AppRouteMain />
-          <ToastContainer />
+          {/* <ToastContainer /> */}
           </Suspense>
           </ThemeProvider>
       </BrowserRouter>

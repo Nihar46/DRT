@@ -1,11 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import {
+  Box,
+} from "@mui/material";
 
 const Auth = () => {
   return (
-    <div>
+    // <Box className="ContentWrapper">
       <Outlet />
-    </div>
+    // </Box>
   );
 };
 

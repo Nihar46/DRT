@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import {
   TextField,
-  InputLabel,
   Box,
   Grid,
   Typography,
@@ -25,21 +24,22 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-between"
-        alignItems="stretch"
-      >
-        <Grid item xs={12} md={6} className="LoginLeftCol">
-          <img
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-between"
+      alignItems="stretch"
+      className="Fullheight"
+    >
+      <Grid item xs={12} md={6} className="LoginLeftCol">
+        {/* <img
             src={require("../../../assets/images/login-banner.jpg")}
             alt=""
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box className="LoginWrapper">
+          /> */}
+      </Grid>
+      <Grid item xs={12} md={6} className="LoginRightCol">
+        <Box className="LoginWrapper">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container direction="row">
               <Grid item xs={12}>
                 <Typography
@@ -57,7 +57,7 @@ const Login = () => {
                   type="text"
                   id="email"
                   name="email"
-                fullWidth
+                  fullWidth
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
@@ -78,7 +78,11 @@ const Login = () => {
               },
             })}
           /> */}
-                {errors.email && <span>{errors.email.message}</span>}
+                {errors.email && (
+                  <Typography variant="body1" className="CustomError">
+                    {errors.email.message}
+                  </Typography>
+                )}
               </Grid>
               <Grid item xs={12} className="InputFldBox">
                 {/* <InputLabel htmlFor="password">Password:</InputLabel> */}
@@ -87,7 +91,7 @@ const Login = () => {
                   type="password"
                   id="password"
                   name="password"
-                fullWidth
+                  fullWidth
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -107,22 +111,33 @@ const Login = () => {
                 message: "Password must be at least 8 characters",
               },
             })}
-          />
-          {errors.password && <span>{errors.password.message}</span>}
-        </div>
-
-        <button isDisabled={isSubmitting} type="submit">
-          Submit
-        </button>
-      </form>
-
-      <div>
-        <a href="/forgot-password">Forgot password Link</a>
-      </div>
-      <div>
-        <a href="/reset-password">Reset password Link</a>
-      </div>
-    </div>
+          /> */}
+                {errors.password && <Typography variant="body1" className="CustomError">{errors.password.message}</Typography>}
+              </Grid>
+              <Grid item xs={12} className="InputButtonBox">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  isDisabled={isSubmitting}
+                  type="submit"
+                  fullWidth
+                >
+                  Log In
+                </Button>
+              </Grid>
+              <Grid item xs={12} textAlign="center">
+                <Link href="/forgot-password" className="ForgotLink">
+                  Forgot password?
+                </Link>
+                <Link href="/reset-password" className="ForgotLink">
+                  Reset password
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 
