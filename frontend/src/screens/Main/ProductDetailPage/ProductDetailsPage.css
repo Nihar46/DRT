@@ -1,0 +1,102 @@
+.product-details-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .back-button {
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .main-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .image-section {
+    width: 50%;
+    position: relative;
+  }
+  
+  .view-visualizer-button{
+    position: absolute;
+  }
+
+  .download-button{
+    position: absolute;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+  
+  .product-main-image {
+    width: 100%;
+    border-radius: 15px;
+    margin-left: 50px;
+    /* Adjust as needed to fit your layout */
+  }
+  
+  .details-section {
+    width: 50%;
+    padding-left: 70px; /* Adjust as needed */
+  }
+  
+  .product-title {
+    /* Style your product title */
+    font-size: 20px;
+  }
+  
+  .color-swatches {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-template-rows: repeat(2, 1fr); /* 2 rows */
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 50%; /* Adjust based on your design */
+  }
+
+
+  .swatch {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    background-color: blue; /* Add border for swatches */
+  }
+  
+  .details-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .main-details{
+    flex: 8 ;
+  }
+  
+
+  .header {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .content {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .sidebar {
+    width: 200px;
+    flex: 4;
+    /* Assuming each section is a collapsible accordion */
+    /* border: 1px solid #000; */
+  }
+  
+  /* You can add more specific styles such as colors, fonts, and other stylings to match the design of the provided image. */
+  
+  
