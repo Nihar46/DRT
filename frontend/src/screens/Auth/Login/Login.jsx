@@ -1,13 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  TextField,
-  Box,
-  Grid,
-  Typography,
-  Button,
-  Link,
-} from "@mui/material";
+import { TextField, Box, Grid, Typography, Button, Link } from "@mui/material";
 import "./Login.css";
 // import { Link } from "react-router-dom";
 
@@ -112,7 +105,11 @@ const Login = () => {
               },
             })}
           /> */}
-                {errors.password && <Typography variant="body1" className="CustomError">{errors.password.message}</Typography>}
+                {errors.password && (
+                  <Typography variant="body1" className="CustomError">
+                    {errors.password.message}
+                  </Typography>
+                )}
               </Grid>
               <Grid item xs={12} className="InputButtonBox">
                 <Button
@@ -129,9 +126,9 @@ const Login = () => {
                 <Link href="/forgot-password" className="ForgotLink">
                   Forgot password?
                 </Link>
-                {/* <Link href="/reset-password" className="ForgotLink">
+                <Link href="/reset-password" className="ForgotLink">
                   Reset password
-                </Link> */}
+                </Link>
               </Grid>
             </Grid>
           </form>

@@ -16,6 +16,10 @@ const ResetPasswordPage = lazy(() =>
   import("../screens/Main/ResetPasswordPage")
 );
 
+const DesignRequestForm = lazy(() =>
+  import("../screens/Main/DesignRequestForm")
+);
+
 const PublicRoute = ({ as: Component, ...props }) => {
   const navigate = useNavigate();
 
@@ -41,6 +45,8 @@ const authNav = [
     element: <ResetPasswordPage />,
   },
   {
+    path: "/design-request-details",
+    element: <DesignRequestForm />,
     //path: "/users/:id/reset-password/:token",
     path: "/product-catalog",
     element: <ProductCatalog />,

@@ -3,14 +3,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import "./ResetPasswordPage.css";
-import {
-  TextField,
-  Box,
-  Grid,
-  Typography,
-  Button,
-  Link,
-} from "@mui/material";
+import { TextField, Box, Grid, Typography, Button, Link } from "@mui/material";
 
 const ResetPasswordPage = () => {
   const { resetPassword } = useAuth();
@@ -50,7 +43,6 @@ const ResetPasswordPage = () => {
         <Box className="LoginWrapper">
           <form onSubmit={handleSubmit}>
             <Grid container direction="row">
-          
               <Grid item xs={12}>
                 <Typography
                   variant="h2"
@@ -86,59 +78,58 @@ const ResetPasswordPage = () => {
                   color="primary"
                   type="submit"
                   fullWidth
-              onClick={() => {
-                navigate("/");
-              }}
-              style={{ width: "100%" }}
-            >
-              Proceed to Login
-            </Button>
+                  onClick={() => {
+                    navigate("/sign-in");
+                  }}
+                  style={{ width: "100%" }}
+                >
+                  Proceed to Login
+                </Button>
               </Grid>
-                </Grid>
-             
+            </Grid>
           </form>
         </Box>
       </Grid>
     </Grid>
-  //  <div className="form-container-outer">
-  //     <h2>Reset Password</h2>
-  //     <div className="login-outer">
-  //       {" "}
-  //       {successfulPasswordReset ? (
-  //         <button
-  //           onClick={() => {
-  //             navigate("/");
-  //           }}
-  //           style={{ width: "100%" }}
-  //         >
-  //           Proceed to Login
-  //         </button>
-  //       ) : (
-  //         <>
-  //           <form className="form-container" onSubmit={handleSubmit}>
-  //             <div className="form-group">
-  //               <input
-  //                 type="password"
-  //                 name="password"
-  //                 placeholder="Enter new password"
-  //               />
-  //             </div>
-  //             <div className="form-button">
-  //               <button type="submit">Reset Password</button>
-  //             </div>
-  //           </form>
-  //           <button
-  //             onClick={() => {
-  //               navigate("/");
-  //             }}
-  //             style={{ width: "100%" }}
-  //           >
-  //             Proceed to Login
-  //           </button>
-  //         </>
-  //       )}
-  //     </div>
-  //   </div>
+    //  <div className="form-container-outer">
+    //     <h2>Reset Password</h2>
+    //     <div className="login-outer">
+    //       {" "}
+    //       {successfulPasswordReset ? (
+    //         <button
+    //           onClick={() => {
+    //             navigate("/");
+    //           }}
+    //           style={{ width: "100%" }}
+    //         >
+    //           Proceed to Login
+    //         </button>
+    //       ) : (
+    //         <>
+    //           <form className="form-container" onSubmit={handleSubmit}>
+    //             <div className="form-group">
+    //               <input
+    //                 type="password"
+    //                 name="password"
+    //                 placeholder="Enter new password"
+    //               />
+    //             </div>
+    //             <div className="form-button">
+    //               <button type="submit">Reset Password</button>
+    //             </div>
+    //           </form>
+    //           <button
+    //             onClick={() => {
+    //               navigate("/");
+    //             }}
+    //             style={{ width: "100%" }}
+    //           >
+    //             Proceed to Login
+    //           </button>
+    //         </>
+    //       )}
+    //     </div>
+    //   </div>
   );
 };
 
