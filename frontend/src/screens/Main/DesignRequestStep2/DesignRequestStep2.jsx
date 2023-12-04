@@ -44,14 +44,6 @@ const DesignRequestStep2 = () => {
         />
 
         {/* Add any additional fields and buttons here */}
-        <Button
-          type="submit"
-          onSubmit={handleSubmit}
-          variant="contained"
-          color="primary"
-        >
-          Next
-        </Button>
       </Paper>
     </Container>
   );

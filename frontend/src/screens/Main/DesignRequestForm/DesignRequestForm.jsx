@@ -8,9 +8,7 @@ import { useStepContext } from "../../../context/StepFormContext";
 
 const DesignRequestForm = () => {
   const { state } = useStepContext();
-  console.log("STATE STEP:", state.step);
-  console.log("STEP 1 Data:", state.projectInformation);
-
+  console.log("State data:", state);
   return (
     <div>
       <h1>Design Request</h1>

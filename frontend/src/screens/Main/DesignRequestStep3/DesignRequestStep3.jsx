@@ -1,33 +1,25 @@
-// Step3.js
-import React from "react";
-import { useStepContext } from "../../../context/StepFormContext";
+import React, { useContext } from "react";
+import {
+  Container,
+  Typography,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Paper,
+  Button,
+} from "@mui/material";
+import { useStepContext } from "../../../context/StepFormContext"; // Adjust the import path accordingly
+import RequestStep2Accordion from "../../../components/RequestStep2Accordion";
 
 const DesignRequestStep3 = () => {
-  const { state } = useStepContext();
+  const { state, dispatch } = useStepContext();
+  console.log("STEP 2:", state);
 
-  return (
-    <div>
-      <h2>Step 3</h2>
-      {/* Display data from Step 1 and Step 2 */}
-      <p>Project ID: {state.projectInformation.projectID}</p>
-      <p>
-        Requested completion date: {state.projectInformation.completionDate}
-      </p>
-      <p>
-        Room scenes/floor plans: {state.projectInformation.roomScenesFloorPlans}
-      </p>
-      <p>Notes: {state.projectInformation.notes}</p>
+  // Generate dropdowns for room scenes
 
-      {/* Display data from Step 2 (design details) */}
-      {/* You can iterate over design options and display their details */}
-      {state.designDetails.map((designOption, index) => (
-        <div key={index}>
-          <h3>Design Option {index + 1}</h3>
-          {/* Display design option details */}
-        </div>
-      ))}
-    </div>
-  );
+  return <div>Hello</div>;
 };
 
 export default DesignRequestStep3;

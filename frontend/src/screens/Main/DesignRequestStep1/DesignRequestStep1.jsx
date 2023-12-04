@@ -81,8 +81,8 @@ const DesignRequestStep1 = () => {
           <MenuItem value="" disabled>
             Select an option
           </MenuItem>
-          <MenuItem value="option1">Option 1</MenuItem>
-          <MenuItem value="option2">Option 2</MenuItem>
+          <MenuItem value="option1">Upload File</MenuItem>
+          <MenuItem value="option2">Choose from library(NA)</MenuItem>
         </Select>
       </FormControl>
 

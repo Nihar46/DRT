@@ -6,9 +6,12 @@ import "./api/models/index.js";
 import routes from "./api/routes/index.js";
 import session from "express-session";
 import dotenv from "dotenv";
+import fileUpload from "express-fileupload";
 dotenv.config();
 
 const app = express();
+
+app.use(fileUpload());
 
 app.use(cookieParser());
 app.use(

@@ -7,7 +7,9 @@ const Auth = lazy(() => import("../screens/Auth"));
 const HomePage = lazy(() => import("../screens/Main/HomePage"));
 const Login = lazy(() => import("../screens/Auth/Login"));
 const ProductCatalog = lazy(() => import("../screens/Main/ProductCatalog"));
-const ProductDetailsPage = lazy(() => import("../screens/Main/ProductDetailPage"));
+const ProductDetailsPage = lazy(() =>
+  import("../screens/Main/ProductDetailPage")
+);
 
 const ForgotPasswordPage = lazy(() =>
   import("../screens/Main/ForgotPasswordPage")
@@ -47,6 +49,8 @@ const authNav = [
   {
     path: "/design-request-details",
     element: <DesignRequestForm />,
+  },
+  {
     //path: "/users/:id/reset-password/:token",
     path: "/product-catalog",
     element: <ProductCatalog />,
