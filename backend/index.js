@@ -7,6 +7,8 @@ import routes from "./api/routes/index.js";
 import session from "express-session";
 import dotenv from "dotenv";
 import fileUpload from "express-fileupload";
+import bcryptjs from "bcryptjs";
+
 dotenv.config();
 
 const app = express();
@@ -21,6 +23,14 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+const passwordHash = async (password) => {
+  const salt = await bcryptjs.genSalt(10);
+  const hashedPassword = await bcryptjs.hash(password, salt);
+  console.log("Hashed Password:", hashedPassword);
+};
+
+passwordHash("Qwerty@123");
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());

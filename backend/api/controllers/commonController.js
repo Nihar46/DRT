@@ -1,4 +1,7 @@
 import User from "../models/userModel";
+import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { Op } from "sequelize";
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -139,6 +142,72 @@ export const loginUser = async (req, res) => {
   } catch (error) {
     console.log("Login failed:", error);
     return res.status(500).json({ error: "Login failed" });
+  }
+};
+
+export const submitRequest = async (req, res) => {
+  try {
+    // Extract data from request body
+    const {
+      request_id,
+      design_file_link,
+      completion_file_link,
+      request_number,
+      _2d_count,
+      _3d_count,
+      generic_pattern_guide_required,
+      expected_completion_date,
+      client_requested_deadline,
+      brand,
+      style,
+      color,
+      installation,
+      comment_description,
+      assigned_designer_id,
+      admin_id,
+      estimator_id,
+      request_status,
+      createdBy,
+      modifiedBy,
+      createdDate,
+      updatedDate,
+    } = req.body;
+
+    // Use the Request model to create a new entry in the database
+    const newRequest = await Request.create({
+      request_id,
+      design_file_link,
+      completion_file_link,
+      request_number,
+      _2d_count,
+      _3d_count,
+      generic_pattern_guide_required,
+      expected_completion_date,
+      client_requested_deadline,
+      brand,
+      style,
+      color,
+      installation,
+      comment_description,
+      assigned_designer_id,
+      admin_id,
+      estimator_id,
+      request_status,
+      createdBy,
+      modifiedBy,
+      createdDate,
+      updatedDate,
+    });
+
+    // Send a response back to the client
+    res.status(201).json({
+      message: "Request submitted successfully",
+      data: newRequest,
+    });
+  } catch (error) {
+    // Handle errors
+    console.error("Error in submitting request:", error);
+    res.status(500).json({ message: "Error in submitting request" });
   }
 };
 

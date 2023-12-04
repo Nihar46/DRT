@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { TextField, Box, Grid, Typography, Button, Link } from "@mui/material";
 import "./Login.css";
-// import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const Login = () => {
   const {
@@ -12,8 +12,12 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { login } = useAuth();
+
+  const onSubmit = async (data) => {
+    console.log("HERE:", data);
+    login(data);
+    reset();
   };
 
   return (
@@ -54,7 +58,7 @@ const Login = () => {
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
-                      value: /^\S+@\S+$/i,
+                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                       message: "Invalid email address",
                     },
                   })}
@@ -91,6 +95,15 @@ const Login = () => {
                       value: 8,
                       message: "Password must be at least 8 characters",
                     },
+                    maxLength: {
+                      value: 24,
+                      message: "Password is too big",
+                    },
+                    pattern: {
+                      value:
+                        /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|;':",.<>?/\\])(.{8,24})$/,
+                      message: "Password criteria not met",
+                    },
                   })}
                 />
                 {/* <input
@@ -126,9 +139,9 @@ const Login = () => {
                 <Link href="/forgot-password" className="ForgotLink">
                   Forgot password?
                 </Link>
-                <Link href="/reset-password" className="ForgotLink">
+                {/*<Link href="/reset-password" className="ForgotLink">
                   Reset password
-                </Link>
+                </Link>*/}
               </Grid>
             </Grid>
           </form>

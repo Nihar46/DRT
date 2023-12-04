@@ -28,6 +28,8 @@ const reducer = (state, action) => {
       };
     case "SET_CONFIRM_SUBMIT":
       return { ...state, confirmAndSubmit: action.payload };
+    case "RESET_STATE":
+      return initialState;
     default:
       return state;
   }

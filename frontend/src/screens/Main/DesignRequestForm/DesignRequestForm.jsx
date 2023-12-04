@@ -5,6 +5,7 @@ import DesignRequestStep1 from "../DesignRequestStep1/DesignRequestStep1";
 import DesignRequestStep2 from "../DesignRequestStep2/DesignRequestStep2";
 import DesignRequestStep3 from "../DesignRequestStep3/DesignRequestStep3";
 import RequestProgressBar from "../../../components/RequestProgressBar";
+import Header from "../../../components/Header";
 import { useStepContext } from "../../../context/StepFormContext";
 import Header from "../../../components/Header";
 

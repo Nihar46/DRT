@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   baseURL: "http://localhost:8000",
 });
 
-axiosInstance.interceptors.request.use(
+/*axiosInstance.interceptors.request.use(
   (config) => {
     const token = Cookies.get("token");
     if (token) {
@@ -16,6 +16,6 @@ axiosInstance.interceptors.request.use(
   (error) => {
     return Promise.reject(error);
   }
-);
+);*/
 
 export default axiosInstance;

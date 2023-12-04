@@ -25,55 +25,57 @@ const User = db.define("Users", {
     unique: true,
   },
   phone: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    type: DataTypes.STRING,
     unique: true,
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  reset_password_token: {
+    type: DataTypes.STRING,
+  },
   user_type: {
     type: DataTypes.STRING,
   },
-  isDeleted: {
+  is_deleted: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
-  isActive: {
+  is_active: {
     type: DataTypes.BOOLEAN,
   },
-  createdBy: {
+  created_by: {
     type: DataTypes.STRING,
   },
-  modifiedBy: {
+  modified_by: {
     type: DataTypes.STRING,
   },
-  createdDate: {
+  created_date: {
     type: DataTypes.DATE,
   },
-  updatedDate: {
+  updated_date: {
     type: DataTypes.DATE,
   },
-  lastLogin: {
+  last_login: {
     type: DataTypes.DATE,
   },
-  remoteIP: {
+  remote_ip: {
     type: DataTypes.STRING,
   },
-  passwordExpDate: {
+  password_exp_date: {
     type: DataTypes.DATE,
   },
-  loginAttempts: {
+  login_attempts: {
     type: DataTypes.INTEGER,
   },
-  accountLockTime: {
+  account_lock_time: {
     type: DataTypes.DATE,
   },
-  isAccountLocked: {
+  is_account_locked: {
     type: DataTypes.ENUM("0", "1"), // Adjust the type based on your requirements
   },
-  isEmailVerified: {
+  is_email_verified: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },

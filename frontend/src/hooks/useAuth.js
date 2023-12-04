@@ -6,32 +6,31 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import CryptoJS from "crypto-js";
 import { CLIENT_KEY } from "../config/keys";
+import { useStepContext } from "../context/StepFormContext";
 
 const useAuth = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const { dispatch } = useStepContext();
 
   const login = async (formValues) => {
-    // console.log("LoginFormValues:", formValues);
+    console.log("LoginFormValues:", formValues);
 
     try {
       const response = await axios.post(
-        "/user/login",
+        "/login",
         { ...formValues },
         { withCredentials: true, credentials: "include" }
       );
       console.log("RESPONSE:", response);
-      if (response.data.key) {
-        toast.info(response.data.message, {
+      if (response.data.success) {
+        toast.success(response.data.message, {
           autoClose: 5000,
           position: "top-center",
         });
-        return;
+        navigate("/design-request-details");
       }
       console.log("LoginResponse:", response.data);
-      if (response.data) {
-        navigate("/2fa");
-      }
     } catch (error) {
       console.log("Error while logging in:", error);
       toast.error("Login Failed!", {
@@ -51,7 +50,7 @@ const useAuth = () => {
         return;
       }
       const response = await axios.post(
-        "/user/forgot-password",
+        "/forgot-password",
         { email },
         {
           withCredentials: true,
@@ -65,8 +64,8 @@ const useAuth = () => {
           autoClose: 2000,
           position: "top-center",
         });
+        navigate("/sign-in");
       }
-      navigate("/");
     } catch (error) {
       console.log("Error occured:", error);
       toast.error("Please enter a registered email!", {
@@ -79,14 +78,10 @@ const useAuth = () => {
   const resetPassword = async (password) => {
     try {
       console.log("Password New:", password);
-      const hashedPassword = CryptoJS.AES.encrypt(
-        password,
-        CLIENT_KEY
-      ).toString();
-      console.log("HAshed password:", hashedPassword);
+
       const response = await axios.post(
         `/user/${params.id}/reset-password/${params.token}`,
-        { hashedPassword },
+        { password },
         { withCredentials: true, credentials: "include" }
       );
 
@@ -110,18 +105,15 @@ const useAuth = () => {
 
   const logout = async () => {
     try {
-      const response = await axios.post("/user/logout", {
+      const response = await axios.post("/logout", {
         withCredentials: true,
         credentials: "include",
       });
 
       if (response.data.success === true) {
-        localStorage.removeItem("email");
-        localStorage.removeItem("name");
         Cookies.remove("token");
         Cookies.remove("user");
-        Cookies.remove("temp_secret");
-        Cookies.remove("verified");
+        dispatch({ type: "RESET_STATE" });
 
         toast.success("You have logged out!", {
           autoClose: 2000,

@@ -2,9 +2,26 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Box, Grid, Typography, Button, Link } from "@mui/material";
 import Header from "../../../components/Header"; // Adjust the path based on your file structure
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const user = Cookies.get("user");
+  const token = Cookies.get("token");
+
+  const handleClick = () => {
+    if (user && token) {
+      navigate("/design-request-details");
+    } else {
+      toast.info("Please login to create request", {
+        autoClose: 5000,
+        position: "top-center",
+      });
+      navigate("/sign-in");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -35,11 +52,7 @@ const HomePage = () => {
             <Typography variant="h5" component="div">
               Make your first design request:{" "}
             </Typography>
-            <Button
-              variant="contained"
-              onClick={() => navigate("/design-request-details")}
-              color="primary"
-            >
+            <Button variant="contained" onClick={handleClick} color="primary">
               Request Design
             </Button>
           </Box>

@@ -11,7 +11,7 @@ const ResetPasswordPage = () => {
   const [successfulPasswordReset, setSuccessfulPasswordReset] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
-    /*if (
+    if (
       /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}|;':",.<>?/\\])(.{8,24})$/.test(
         event.target.password.value
       )
@@ -23,7 +23,7 @@ const ResetPasswordPage = () => {
         autoClose: 2000,
         position: "top-center",
       });
-    }*/
+    }
   };
   return (
     <Grid
@@ -43,49 +43,54 @@ const ResetPasswordPage = () => {
         <Box className="LoginWrapper">
           <form onSubmit={handleSubmit}>
             <Grid container direction="row">
-              <Grid item xs={12}>
-                <Typography
-                  variant="h2"
-                  component="div"
-                  className="MainHeading LoginHeading"
-                >
-                  Reset Password
-                </Typography>
-              </Grid>
-              <Grid item xs={12} className="InputFldBox">
-                {/* <InputLabel htmlFor="password">Password:</InputLabel> */}
-                <TextField
-                  label="Password"
-                  type="password"
-                  id="password"
-                  name="password"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12} className="InputButtonBox">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  fullWidth
-                >
-                  Reset Password
-                </Button>
-              </Grid>
-              <Grid item xs={12} textAlign="center">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  fullWidth
-                  onClick={() => {
-                    navigate("/sign-in");
-                  }}
-                  style={{ width: "100%" }}
-                >
-                  Proceed to Login
-                </Button>
-              </Grid>
+              {successfulPasswordReset ? (
+                <Grid item xs={12} textAlign="center">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    fullWidth
+                    onClick={() => {
+                      navigate("/sign-in");
+                    }}
+                    style={{ width: "100%" }}
+                  >
+                    Proceed to Login
+                  </Button>
+                </Grid>
+              ) : (
+                <>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="h2"
+                      component="div"
+                      className="MainHeading LoginHeading"
+                    >
+                      Reset Password
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} className="InputFldBox">
+                    {/* <InputLabel htmlFor="password">Password:</InputLabel> */}
+                    <TextField
+                      label="Password"
+                      type="password"
+                      id="password"
+                      name="password"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={12} className="InputButtonBox">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      fullWidth
+                    >
+                      Reset Password
+                    </Button>
+                  </Grid>
+                </>
+              )}
             </Grid>
           </form>
         </Box>
