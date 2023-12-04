@@ -5,6 +5,13 @@ body {
 #root {
   height: 100%;
 }
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 0;
+}
+.CustomLabel {
+  margin-top: 15px;
+  font-size: 12px;
+}
 .LoginLeftCol {
   background: url(assets/images/login-banner.jpg) no-repeat #DAAA02;
   background-size: contain;
@@ -14,6 +21,23 @@ body {
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+.IncrementNumbers{
+      border: 1px solid rgba(33, 118, 185, 0.50);
+        border-radius: 4px;
+        padding: 3px 0px;
+}
+.IncrementNumbersTextBox .MuiInputBase-root.MuiOutlinedInput-root {
+  border: none;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+.IncrementNumbersTextBox .MuiInputBase-root.MuiOutlinedInput-root .MuiInputBase-input {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 5px 5px !important;
+  text-align: center;
+  font-family: 15px;
 }
 .BannerImg2Container {
   display: flex;
@@ -117,6 +141,80 @@ body {
   min-height: calc(100vh - 60px);
   background: url(assets/images/banner-img-6.jpg) no-repeat bottom right;
     background-size: 30%;
+}
+.PageSpacing {
+  margin-top: 80px;
+}
+.StepContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+textarea {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  width: calc(100% - 30px);
+  resize: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+}
+textarea:hover,
+textarea:focus {
+  border-color: #003057;
+  box-shadow: 0px 1px 8px #003057;
+}
+textarea:focus-visible {
+  outline: none;
+}
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.87);
+}
+.TextareaLabel {
+  position: relative;
+  top: 9px;
+  left: 15px;
+  background: #fff;
+  display: inline;
+}
+.ActionButtonBox {
+  display: flex;
+  justify-content: flex-end;
+}
+.ActiveStep .MuiTypography-root {
+  color: #003057;
+}
+.InActiveStep .MuiTypography-root {
+  color: rgba(0, 0, 0, 0.60);
+}
+.StepBox .MuiTypography-root {
+  font-weight: 500;
+}
+.StepContainer {
+  position: relative;
+  /* display: flex; */
+}
+
+.StepDivider {
+  position: absolute;
+  width: 20%;
+  top: 50%;
+  min-width: 200px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+}
+.StepDivider.FirstDivider {
+  transform: translate(-150%, -50%);
+}
+.StepDivider.SecondDivider {
+  transform: translate(50%, -50%);
+}
+.DesignRequestContent {
+  padding-left: 25px;
+  padding-right: 25px;
 }
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   

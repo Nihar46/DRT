@@ -1,16 +1,14 @@
 import React from "react";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
+import { TextField, Box, Grid, Typography, Paper, Avatar, Divider } from "@mui/material";
 import { styled } from "@mui/system";
 
 const ProgressBar = styled(Paper)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  width: "60%",
-  margin: "0 auto",
-  padding: theme.spacing(2),
-  marginBottom: theme.spacing(2),
+  // display: "flex",
+  // justifyContent: "space-between",
+  // width: "60%",
+  // margin: "0 auto",
+  // padding: theme.spacing(2),
+  // marginBottom: theme.spacing(2),
 }));
 
 const Step = styled("div")(({ theme, isActive }) => ({
@@ -29,7 +27,7 @@ const ActiveStep = styled(Step)(({ theme }) => ({
 }));
 
 const AvatarStyled = styled(Avatar)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[300],
+  backgroundColor: "rgba(0, 0, 0, 0.30)",
   marginRight: theme.spacing(1),
 }));
 
@@ -41,22 +39,26 @@ const RequestProgressBar = ({ activeStep }) => {
   ];
 
   return (
-    <ProgressBar elevation={3}>
+    <ProgressBar elevation={3} className="StepContainer">
       {steps.map((step) => (
-        <div key={step.number}>
+        < Box key={step.number} className="StepBox">
           {activeStep === step.number ? (
-            <ActiveStep isActive={activeStep === step.number}>
+            <ActiveStep isActive={activeStep === step.number} className="ActiveStep">
               <AvatarStyled>{step.number}</AvatarStyled>
               <Typography variant="h6">{step.text}</Typography>
             </ActiveStep>
           ) : (
-            <Step isActive={activeStep === step.number}>
+            <Step isActive={activeStep === step.number} className="InActiveStep">
               <AvatarStyled>{step.number}</AvatarStyled>
               <Typography variant="h6">{step.text}</Typography>
             </Step>
           )}
-        </div>
+          
+        </Box>
+        
       ))}
+      <Divider className="StepDivider FirstDivider" />
+      <Divider className="StepDivider SecondDivider"/>
     </ProgressBar>
   );
 };
