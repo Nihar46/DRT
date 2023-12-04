@@ -1,25 +1,120 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useStepContext } from "../../../context/StepFormContext";
 import {
-  Container,
   Typography,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  Box,
   Paper,
+  List,
+  ListItem,
+  ListItemText,
+  Accordion,
   Button,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
-import { useStepContext } from "../../../context/StepFormContext"; // Adjust the import path accordingly
-import RequestStep2Accordion from "../../../components/RequestStep2Accordion";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const DesignRequestStep3 = () => {
-  const { state, dispatch } = useStepContext();
-  console.log("STEP 2:", state);
+  const { state } = useStepContext();
+  const { designDetails, projectInformation } = state;
 
-  // Generate dropdowns for room scenes
+  return (
+    <Box sx={{ padding: 2 }}>
+      {/* Project Information */}
+      <Paper elevation={3} sx={{ padding: 2, marginBottom: 2 }}>
+        <Typography variant="h6" gutterBottom>
+          Project Information
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary="Project ID"
+              secondary={projectInformation.projectID || "N/A"}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Project Name"
+              secondary={projectInformation.projectName || "N/A"}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Completion Date"
+              secondary={projectInformation.completionDate || "N/A"}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Design Input Type"
+              secondary={projectInformation.designInputType || "N/A"}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Room Scenes/Floor Plans"
+              secondary={projectInformation.roomScenesFloorPlans || "N/A"}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Notes"
+              secondary={projectInformation.notes || "N/A"}
+            />
+          </ListItem>
+        </List>
+      </Paper>
 
-  return <div>Hello</div>;
+      {/* Design Details */}
+      {Object.entries(designDetails).map(([index, design]) => (
+        <Accordion key={index}>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography>Design {parseInt(index) + 1}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {design.productList.map((product, idx) => (
+                <React.Fragment key={idx}>
+                  <ListItem>
+                    <ListItemText primary="Brand" secondary={product.brand} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="Style" secondary={product.style} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText primary="Color" secondary={product.color} />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Installation"
+                      secondary={product.installation}
+                    />
+                  </ListItem>
+                </React.Fragment>
+              ))}
+              <ListItem>
+                <ListItemText
+                  primary="Rendering Notes"
+                  secondary={design.notes || "N/A"}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Uploaded Files" />
+              </ListItem>
+              {design.uploadedFiles.map((file, fileIndex) => (
+                <ListItem key={fileIndex}>
+                  <ListItemText secondary={file} />
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+      <Button type="button" variant="contained" color="primary">
+        Submit Request
+      </Button>
+    </Box>
+  );
 };
 
 export default DesignRequestStep3;

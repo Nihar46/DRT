@@ -19,7 +19,13 @@ const reducer = (state, action) => {
     case "SET_PROJECT_INFO":
       return { ...state, projectInformation: action.payload };
     case "SET_DESIGN_DETAILS":
-      return { ...state, designDetails: action.payload };
+      return {
+        ...state,
+        designDetails: {
+          ...state.designDetails,
+          ...action.payload,
+        },
+      };
     case "SET_CONFIRM_SUBMIT":
       return { ...state, confirmAndSubmit: action.payload };
     default:

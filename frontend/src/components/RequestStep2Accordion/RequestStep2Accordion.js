@@ -25,7 +25,7 @@ import { useDropzone } from "react-dropzone";
 import ProductSelection from "../ProductSelection";
 import { useStepContext } from "../../context/StepFormContext";
 
-const DesignAccordion = ({ index }) => {
+const DesignAccordion = ({ index, onDesignChange }) => {
   const navigate = useNavigate();
   const [selectedType, setSelectedType] = useState("");
   const [notes, setNotes] = useState("");
@@ -33,6 +33,15 @@ const DesignAccordion = ({ index }) => {
   const [products, setProducts] = useState([]);
   const [productList, setProductList] = useState([]);
   const { state, dispatch } = useStepContext();
+
+  useEffect(() => {
+    // Call the onDesignChange callback whenever the design data changes
+    onDesignChange(index, {
+      productList,
+      uploadedFiles: uploadedFiles.map((file) => file.name),
+      notes,
+    });
+  }, [index, productList, uploadedFiles, notes, onDesignChange]);
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
@@ -102,12 +111,12 @@ const DesignAccordion = ({ index }) => {
   };
 
   const handleClick = () => {
-    const payload = {
-      products: productList,
-      uploadedFileNames: uploadedFiles.map((file) => file.name),
-      renderNotes: notes,
+    const designData = {
+      productList,
+      uploadedFiles: uploadedFiles.map((file) => file.name),
+      notes,
     };
-    dispatch({ type: "SET_DESIGN_DETAILS", payload: payload });
+    dispatch({ type: "SET_DESIGN_DETAILS", payload: { index, designData } });
     dispatch({ type: "NEXT_STEP" });
   };
 
@@ -189,27 +198,53 @@ const DesignAccordion = ({ index }) => {
           />
         </AccordionDetails>
       </Accordion>
-      <Button
-        type="button"
-        onClick={handleClick}
-        variant="contained"
-        color="primary"
-        disabled={
-          productList.length > 0 && uploadedFiles.length > 0 ? false : true
-        }
-      >
-        Next
-      </Button>
     </>
   );
 };
 
 const RequestStep2Accordion = ({ count }) => {
+  const [allDesigns, setAllDesigns] = useState({});
+  const [isNextEnabled, setIsNextEnabled] = useState(false);
+  const { dispatch } = useStepContext();
+
+  const handleDesignChange = (index, designData) => {
+    setAllDesigns((prevDesigns) => {
+      const newDesigns = { ...prevDesigns, [index]: designData };
+
+      // Check if every design has at least one product and one uploaded file
+      const allDesignsValid = Object.values(newDesigns).every(
+        (design) =>
+          design.productList.length > 0 && design.uploadedFiles.length > 0
+      );
+
+      setIsNextEnabled(allDesignsValid); // Enable or disable the Next button
+      return newDesigns;
+    });
+  };
+
+  const handleClick = () => {
+    console.log("ALL DESIGNS:", allDesigns);
+    dispatch({ type: "SET_DESIGN_DETAILS", payload: allDesigns });
+    dispatch({ type: "NEXT_STEP" });
+  };
   return (
     <div>
       {Array.from({ length: count }, (_, index) => (
-        <DesignAccordion key={index} index={index} />
+        <DesignAccordion
+          key={index}
+          index={index}
+          onDesignChange={handleDesignChange}
+        />
       ))}
+      <Button
+        type="button"
+        onClick={handleClick}
+        variant="contained"
+        color="primary"
+        disabled={!isNextEnabled}
+      >
+        Next
+      </Button>
     </div>
   );
 };
