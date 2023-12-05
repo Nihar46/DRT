@@ -119,6 +119,16 @@ body {
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline:hover {
   border-color: transparent;
 }
+.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: transparent!important;
+}
+.IncrementNumbersTextBox .MuiFormHelperText-root.Mui-error {
+  white-space: nowrap;
+  margin-left: -25px;
+}
+.DatePickerBox {
+  width: 100%;
+}
 .LoginHeading {
   margin-bottom: 25px;
 }
@@ -144,6 +154,7 @@ body {
 }
 .PageSpacing {
   margin-top: 80px;
+  margin-bottom: 60px;
 }
 .StepContainer {
   display: flex;
@@ -159,9 +170,19 @@ textarea {
   padding: 10px 15px;
   font-size: 16px;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgba(0, 0, 0, 0.60);
   display: flex;
+  /* min-height: 150px; */
+  font-family: Poppins, sans-serif;
 }
+textarea::placeholder {
+    color: rgba(0, 0, 0, 0.60);
+    font-weight: 500;
+}
+textarea::-ms-input-placeholder { /* Edge 12-18 */
+  color: rgba(0, 0, 0, 0.60);
+}
+
 textarea:hover,
 textarea:focus {
   border-color: #003057;
@@ -170,9 +191,7 @@ textarea:focus {
 textarea:focus-visible {
   outline: none;
 }
-textarea::placeholder {
-  color: rgba(0, 0, 0, 0.87);
-}
+
 .TextareaLabel {
   position: relative;
   top: 9px;
@@ -219,6 +238,128 @@ textarea::placeholder {
 .DesignImgBox {
   margin-bottom: 40px;
 }
+.RequestBox {
+  padding: 24px;
+  background-color: rgba(2, 136, 209, 0.04);
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+.InfoHeading {
+  margin-bottom: 30px;
+}
+.RequestInfo {
+  display: flex;
+  flex-wrap: wrap;
+}
+.RequestInfoContent {
+  margin-right: 40px;
+  min-width: 20%;
+  margin-bottom: 30px;
+}
+.InfoLabel {
+  margin-bottom: 10px;
+}
+.AccordionTitleBox {
+  padding: 0;
+}
+.AccordionTitleInfo {
+  background-color: #616161;
+  color: #fff;
+  min-width: 160px;
+  min-height: 45px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 8px;
+}
+.AccordionTitleBox .MuiAccordionSummary-content {
+  margin: 0;
+}
+.AccordionBox {
+  margin-bottom: 25px;
+}
+.MuiPaper-root.MuiAccordion-root:before {
+  display: none;
+}
+.AccordionContentBox {
+  padding: 0 0 0 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.UploadFileBox {
+  border: 1px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  min-height: 140px;
+  align-items: center;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+    margin-bottom: 20px;
+}
+.RenderingNotes {
+  margin-top: 20px;
+}
+.ProductListItem {
+  padding: 0;
+  display: flex;
+  background-color: rgba(33, 118, 185, 0.12);
+  margin-bottom: 3px;
+}
+.ProductTile {
+  width: 30px;
+  height: 40px;
+  background: #003057;
+}
+.ProductListBox {
+  /* margin-top: 20px; */
+  /* margin-bottom: 50px; */
+}
+.BottomActionButtton {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.ProductListInfo {
+  display: table;
+  /* justify-content: space-between; */
+  width: calc(100% - 90px);
+  /* align-items: flex-start; */
+  table-layout: fixed;
+  min-height: 50px;
+  
+}
+.ProductInfoContainer {
+  margin-bottom: 20px;
+}
+.ProductListInfo .MuiTypography-root {
+  display: table-cell;
+  padding: 3px 10px;
+  vertical-align: middle;
+  border-right: 1px solid #ccc;
+}
+.ProductListItem .MuiListItemSecondaryAction-root {
+  text-align: center;
+  padding: 0 10px;
+  width: 70px;
+  right: 0;
+}
+.RequestViewContent {
+  margin-bottom: 30px;
+}
+.RequestBoxSecond {
+  display: flex;
+  align-items: center;
+}
+.RequestBoxSecond .FilesIcon {
+  margin-right: 15px;
+}
+.ArrowAccord {
+  font-size: 35px;
+}
+
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   
 }

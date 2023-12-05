@@ -14,6 +14,8 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
 
 const DesignRequestStep3 = () => {
   const { state } = useStepContext();
@@ -23,106 +25,200 @@ const DesignRequestStep3 = () => {
   const handleClick = () => {};
 
   return (
-    <Box sx={{ padding: 2 }}>
-      {/* Project Information */}
-      <Paper elevation={3} sx={{ padding: 2, marginBottom: 2 }}>
-        <Typography variant="h6" gutterBottom>
+    <Paper>
+      <Box className="RequestBox">
+        <Typography variant="h3" component="div" className="InfoHeading">
           Project Information
         </Typography>
-        <List>
-          <ListItem>
-            <ListItemText
-              primary="Project ID"
-              secondary={projectInformation.projectID || "N/A"}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Project Name"
-              secondary={projectInformation.projectName || "N/A"}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Completion Date"
-              secondary={projectInformation.completionDate || "N/A"}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Design Input Type"
-              secondary={projectInformation.designInputType || "N/A"}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Room Scenes/Floor Plans"
-              secondary={projectInformation.roomScenesFloorPlans || "N/A"}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Notes"
-              secondary={projectInformation.notes || "N/A"}
-            />
-          </ListItem>
-        </List>
-      </Paper>
-
-      {/* Design Details */}
-      {Object.entries(designDetails).map(([index, design]) => (
-        <Accordion key={index}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>Design {parseInt(index) + 1}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <List>
-              {design.productList.map((product, idx) => (
-                <React.Fragment key={idx}>
-                  <ListItem>
-                    <ListItemText primary="Brand" secondary={product.brand} />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="Style" secondary={product.style} />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText primary="Color" secondary={product.color} />
-                  </ListItem>
-                  <ListItem>
-                    <ListItemText
-                      primary="Installation"
-                      secondary={product.installation}
-                    />
-                  </ListItem>
-                </React.Fragment>
-              ))}
-              <ListItem>
-                <ListItemText
-                  primary="Rendering Notes"
-                  secondary={design.notes || "N/A"}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText primary="Uploaded Files" />
-              </ListItem>
-              {design.uploadedFiles.map((file, fileIndex) => (
-                <ListItem key={fileIndex}>
-                  <ListItemText secondary={file} />
-                </ListItem>
-              ))}
-            </List>
-          </AccordionDetails>
-        </Accordion>
-      ))}
-      <Button
-        type="button"
-        onClick={handleClick}
-        variant="contained"
-        color="primary"
-      >
-        Submit Request
-      </Button>
-    </Box>
+        <Box className="RequestInfo">
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Project ID
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.projectID || "N/A"}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Project Name
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.projectName || "N/A"}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Completion Date
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.completionDate || "N/A"}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Design Input Type
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.designInputType || "N/A"}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Rooms Scenes/Floor Plans
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.roomScenesFloorPlans || "N/A"}
+            </Typography>
+          </Box>
+        </Box>
+        <Box className="NoteInfo">
+          <Typography variant="body2" component="div" className="InfoLabel">
+            Notes
+          </Typography>
+          <Typography variant="body1" component="div" className="InfoData">
+            {projectInformation.notes || "N/A"}
+          </Typography>
+        </Box>
+      </Box>
+      <Box className="RequestAccordionBox">
+        {/* Design Details */}
+        {Object.entries(designDetails).map(([index, design]) => (
+          <Accordion key={index} className="AccordionBox">
+            <AccordionSummary
+              className="AccordionTitleBox"
+              expandIcon={<ArrowDropDownOutlinedIcon  className="ArrowAccord"/>}
+            >
+              <Typography variant="h5" className="AccordionTitleInfo">
+                Design {parseInt(index) + 1}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails className="AccordionContentBox">
+              <Box>
+                {design.productList.map((product, idx) => (
+                  <React.Fragment key={idx}>
+                    <Box className="RequestBox RequestBoxSecond">
+                  <InsertPhotoOutlinedIcon color="primary" className="FilesIcon" />
+                  <Box>
+                  <Typography
+                        variant="body2"
+                        component="div"
+                        className="InfoLabel"
+                      >
+                        Uploaded Files
+                  </Typography>
+                  <Box>
+                    {design.uploadedFiles.map((file, fileIndex) => (
+                      <Box key={fileIndex}>
+                        <Typography
+                        variant="body1"
+                        component="div"
+                        >
+                          {file}
+                      </Typography>
+                  </Box>
+                ))}
+                    </Box>
+                    </Box>
+                </Box>
+                    <Box className="RequestViewContent">
+                      <Typography
+                        variant="body2"
+                        component="div"
+                        className="InfoLabel"
+                      >
+                        Brand
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        className="InfoData"
+                      >
+                        {product.brand}
+                      </Typography>
+                    </Box>
+                    <Box className="RequestViewContent">
+                      <Typography
+                        variant="body2"
+                        component="div"
+                        className="InfoLabel"
+                      >
+                        Style
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        className="InfoData"
+                      >
+                        {product.style}
+                      </Typography>
+                    </Box>
+                    <Box className="RequestViewContent">
+                      <Typography
+                        variant="body2"
+                        component="div"
+                        className="InfoLabel"
+                      >
+                        Color
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        className="InfoData"
+                      >
+                        {product.color}
+                      </Typography>
+                    </Box>
+                    <Box className="RequestViewContent">
+                      <Typography
+                        variant="body2"
+                        component="div"
+                        className="InfoLabel"
+                      >
+                        Installation
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        className="InfoData"
+                      >
+                        {product.installation}
+                      </Typography>
+                    </Box>
+                  </React.Fragment>
+                ))}
+                <Box className="RequestViewContent">
+                  <Typography
+                        variant="body2"
+                        component="div"
+                        className="InfoLabel"
+                      >
+                        Rendering Notes
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        className="InfoData"
+                      >
+                        {design.notes || "N/A"}
+                      </Typography>
+                </Box>
+                
+                
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Box>
+      <Box className="BottomActionButtton">
+        <Button type="button" variant="contained" color="primary">
+          Back
+        </Button>
+        <Button type="button" variant="contained" color="primary" onClick={handleClick}>
+          Submit Request
+        </Button>
+      </Box>
+    </Paper>
   );
 };
 

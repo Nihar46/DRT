@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material/styles';
+import ErrorIcon from './assets/images/Error-Icon.svg';
+
 
 const theme = createTheme({
   palette: {
@@ -40,7 +42,7 @@ const theme = createTheme({
     },
     h3: {
       fontSize: 20,
-      fontWeight: 700,
+      fontWeight: 500,
       color: 'rgba(0, 0, 0, 0.87)',
       wordBreak: 'break-word',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
@@ -87,22 +89,22 @@ const theme = createTheme({
       },
     },
     body1: {
-      fontSize: 20,
+      fontSize: 16,
       fontWeight: 400,
-      color: '#353755',
+      color: 'rgba(0, 0, 0, 0.87)',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
-        fontSize: 18,
+        fontSize: 16,
       },
       '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
-        fontSize: 14,
+        fontSize: 15,
       },
     },
     body2: {
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: 400,
-      color: '#353755',
+      color: 'rgba(0, 0, 0, 0.60)',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
-        fontSize: 15,
+        fontSize: 14,
       },
       '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
         fontSize: 13,
@@ -154,7 +156,7 @@ const theme = createTheme({
           fontSize: 16,
           color: "rgba(0, 0, 0, 0.60)",
           fontWeight: 400,
-          padding: '12px 14px!important'
+          padding: '14px 14px!important'
         },
       },
     },
@@ -168,6 +170,24 @@ const theme = createTheme({
           fontWeight: '500',
           '@media screen and (min-device-width: 320px) and (max-device-width: 767px)': {
             fontSize: 14,
+          },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(0, 0, 0, 0.6)',
+            fontSize: '14px',
+            backgroundImage: `url(${ErrorIcon})`,
+            backgroundSize: '17px',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'left 0px',
+            marginLeft: '0',
+            paddingLeft: '24px',
+            marginTop: '8px',
+          '&.Mui-error': {
+            color: 'rgba(0, 0, 0, 0.6)',
           },
         },
       },
@@ -232,6 +252,7 @@ const theme = createTheme({
       },
     },
   },
+  
   breakpoints: {
     values: {
       xs: 0,

@@ -1,51 +1,59 @@
 import React, { useContext } from "react";
-import {
-  Container,
-  Typography,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Paper,
-  Button,
-} from "@mui/material";
+import { Typography, Box, Paper } from "@mui/material";
 import { useStepContext } from "../../../context/StepFormContext"; // Adjust the import path accordingly
 import RequestStep2Accordion from "../../../components/RequestStep2Accordion";
-
 const DesignRequestStep2 = () => {
   const { state, dispatch } = useStepContext();
   console.log("STEP 2:", state);
-
   // Generate dropdowns for room scenes
-
   return (
-    <Container maxWidth="lg">
-      <Paper elevation={3} sx={{ my: 4, p: 2 }}>
-        <Typography variant="h5" gutterBottom>
+    <Paper>
+      <Box className="RequestBox">
+        <Typography variant="h3" component="div" className="InfoHeading">
           Design Request
         </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Project ID: {state.projectInformation.projectID}
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Requested Completion Date: {state.projectInformation.completionDate}
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Rooms Scenes/Floor Plans:{" "}
-          {state.projectInformation.roomScenesFloorPlans}
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          Notes: {state.projectInformation.notes}
-        </Typography>
-
+        <Box className="RequestInfo">
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Project ID
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {state.projectInformation.projectID}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Requested Completion Date
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {state.projectInformation.completionDate}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Rooms Scenes/Floor Plans
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {state.projectInformation.roomScenesFloorPlans}
+            </Typography>
+          </Box>
+        </Box>
+        <Box className="NoteInfo">
+          <Typography variant="body2" component="div" className="InfoLabel">
+            Notes
+          </Typography>
+          <Typography variant="body1" component="div" className="InfoData">
+            {state.projectInformation.notes}
+          </Typography>
+        </Box>
+      </Box>
+      <Box className="RequestAccordionBox">
         <RequestStep2Accordion
           count={state.projectInformation.roomScenesFloorPlans}
         />
-
-        {/* Add any additional fields and buttons here */}
-      </Paper>
-    </Container>
+      </Box>
+      {/* Add any additional fields and buttons here */}
+    </Paper>
   );
 };
 

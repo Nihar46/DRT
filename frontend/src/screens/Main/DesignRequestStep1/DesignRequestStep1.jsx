@@ -16,8 +16,12 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const DesignRequestStep1 = () => {
+  const [value, setValue] = React.useState(null);
   const {
     register,
     handleSubmit,
@@ -58,9 +62,9 @@ const DesignRequestStep1 = () => {
             error={!!errors.projectName}
             helperText={errors.projectName ? "Required" : ""}
             fullWidth
-            InputLabelProps={{
-            shrink: true,
-          }}
+            // InputLabelProps={{
+            //   shrink: true,
+            // }}
           />
         </Grid>
         <Grid item xs={12} md={6} className="">
@@ -71,22 +75,25 @@ const DesignRequestStep1 = () => {
             error={!!errors.projectID}
             helperText={errors.projectID ? "Required" : ""}
             fullWidth
-            InputLabelProps={{
-            shrink: true,
-          }}
+            // InputLabelProps={{
+            //   shrink: true,
+            // }}
           />
         </Grid>
         <Grid item xs={12} md={6} className="">
           <FormControl fullWidth margin="normal">
-            {/* <Autocomplete
-      disablePortal
-      id="combo-box-demo"
+            <p style={{ color: 'red' }}>Nihar Pushed Old code to New Autocomplete</p>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
               options={DesignInputType}
               InputLabelProps={{
-            shrink: true,
-          }}
+                shrink: true,
+              }}
               fullWidth
-              renderInput={(params) => <TextField {...params} label="Design Input Type" />}
+              renderInput={(params) => (
+                <TextField {...params} label="Design Input Type" />
+              )}
               {...register("designInputType", {
                 required: "Please select an option",
               })}
@@ -94,7 +101,7 @@ const DesignRequestStep1 = () => {
               helperText={
                 errors.designInputType ? "Please select an option" : ""
               }
-    /> */}
+            />
             <InputLabel id="demo-simple-select-label">Design Input Type</InputLabel>
             <Select
             InputLabelProps={{
@@ -120,12 +127,18 @@ const DesignRequestStep1 = () => {
         </Grid>
         <Grid item xs={12} md={6} className="">
           <Box>
-            <InputLabel className="CustomLabel">Room scenes/floor plans</InputLabel>
-            <IconButton type="button" onClick={decrementRoomScenesFloorPlans} className="IncrementNumbers">
+            <InputLabel className="CustomLabel">
+              Room scenes/floor plans
+            </InputLabel>
+            <IconButton
+              type="button"
+              onClick={decrementRoomScenesFloorPlans}
+              className="IncrementNumbers"
+            >
               <RemoveIcon />
             </IconButton>
             <TextField
-            className="IncrementNumbersTextBox"
+              className="IncrementNumbersTextBox"
               {...register("roomScenesFloorPlans")}
               style={{ width: "50px" }}
               type="text"
@@ -136,12 +149,30 @@ const DesignRequestStep1 = () => {
               error={roomScenesFloorPlans <= 0 ? true : false}
               helperText={roomScenesFloorPlans <= 0 ? "Cannot be 0" : ""}
             />
-            <IconButton type="button" onClick={incrementRoomScenesFloorPlans} className="IncrementNumbers">
+            <IconButton
+              type="button"
+              onClick={incrementRoomScenesFloorPlans}
+              className="IncrementNumbers"
+            >
               <AddIcon />
             </IconButton>
           </Box>
         </Grid>
         <Grid item xs={12} md={6} className="">
+          <p style={{ color: 'red' }}>Nihar Pushed Old code to New Date Picker</p>
+          <LocalizationProvider dateAdapter={AdapterDateFns} fullWidth>
+            <DatePicker
+              className="DatePickerBox"
+              label="Requested Completion Date"
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              fullWidth
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          
           <TextField
             label="Requested completion date"
             type="date"
@@ -164,10 +195,10 @@ const DesignRequestStep1 = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} className="">
-          <InputLabel className="CustomLabel TextareaLabel">Notes</InputLabel>
+          {/* <InputLabel className="CustomLabel TextareaLabel">Notes</InputLabel> */}
           <TextareaAutosize
             minRows={8}
-            placeholder=""
+            placeholder="Notes"
             {...register("notes")}
             fullWidth
           />
@@ -187,8 +218,8 @@ const DesignRequestStep1 = () => {
   );
 };
 const DesignInputType = [
-  { label: 'The Shawshank Redemption', year: 1994 },
-  { label: 'The Godfather', year: 1972 },
-  { label: 'The Godfather: Part II', year: 1974 },
+  { label: "The Shawshank Redemption", year: 1994 },
+  { label: "The Godfather", year: 1972 },
+  { label: "The Godfather: Part II", year: 1974 },
 ];
 export default DesignRequestStep1;

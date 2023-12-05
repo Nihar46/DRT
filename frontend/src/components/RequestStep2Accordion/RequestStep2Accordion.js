@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../utilities/axiosConfig";
 import {
+  Box,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -18,7 +19,7 @@ import {
   ListItemSecondaryAction,
   TextareaAutosize,
 } from "@mui/material";
-
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDropzone } from "react-dropzone";
@@ -128,35 +129,57 @@ const DesignAccordion = ({ index, onDesignChange }) => {
 
   return (
     <>
-      <Accordion>
+      <Accordion className="AccordionBox">
         <AccordionSummary
-          style={{ backgroundColor: "#003057" }}
-          expandIcon={<ExpandMoreIcon />}
+          className="AccordionTitleBox"
+          expandIcon={<ArrowDropDownOutlinedIcon className="ArrowAccord" />}
         >
-          <Typography color="white">Design {index + 1}</Typography>
+          <Typography variant="h5" className="AccordionTitleInfo">
+            Design {index + 1}
+          </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className="AccordionContentBox">
           <ProductSelection
             onSubmitDesignDetails={handleOnSubmitDesignDetails}
           />
-        </AccordionDetails>
-        <AccordionDetails>
-          <div
-            {...getRootProps()}
-            style={{
-              border: "2px dashed black",
-              padding: "20px",
-              marginBottom: "20px",
-            }}
-          >
+          <Box {...getRootProps()} className="UploadFileBox">
             <input {...getInputProps()} />
-            <p>Drag 'n' drop some files here, or click to select files</p>
-          </div>
-          <List>
+            <Typography variant="body1" component="div">
+              Drag 'n' drop some files here,{" "}
+              <Box component="div" mt={1} mb={1}>
+                or
+              </Box>
+              <Button variant="contained" color="primary">
+                Click to select files
+              </Button>
+            </Typography>
+          </Box>
+          <List className="ProductListBox">
             {uploadedFiles.map((file, idx) => (
-              <ListItem key={idx}>
-                <ListItemText primary={file.name} />
-                <ListItemSecondaryAction>
+              <ListItem
+                key={idx}
+                className="ProductListItem"
+                secondaryAction={
+                  <>
+                    <IconButton
+                      edge="end"
+                      onClick={() => handleRemoveFile(file.name)}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </>
+                }
+              >
+                <Box className="ProductListInfo">
+                  <Typography
+                    variant="body1"
+                    component="div"
+                    className="ProductName"
+                  >
+                    primary={file.name}
+                  </Typography>
+                </Box>
+                {/* <ListItemSecondaryAction>
                   <IconButton
                     edge="end"
                     aria-label="delete"
@@ -164,7 +187,7 @@ const DesignAccordion = ({ index, onDesignChange }) => {
                   >
                     <DeleteIcon />
                   </IconButton>
-                </ListItemSecondaryAction>
+                </ListItemSecondaryAction> */}
               </ListItem>
             ))}
           </List>
@@ -190,11 +213,11 @@ const DesignAccordion = ({ index, onDesignChange }) => {
           onChange={(e) => setNotes(e.target.value)}
         />*/}
           <TextareaAutosize
-            minRows={3}
+            minRows={8}
             placeholder="Rendering Notes"
-            style={{ width: "100%", marginTop: "20px" }}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
+            className="RenderingNotes"
           />
         </AccordionDetails>
       </Accordion>
@@ -228,7 +251,7 @@ const RequestStep2Accordion = ({ count }) => {
     dispatch({ type: "NEXT_STEP" });
   };
   return (
-    <div>
+    <Box>
       {Array.from({ length: count }, (_, index) => (
         <DesignAccordion
           key={index}
@@ -236,16 +259,21 @@ const RequestStep2Accordion = ({ count }) => {
           onDesignChange={handleDesignChange}
         />
       ))}
-      <Button
-        type="button"
-        onClick={handleClick}
-        variant="contained"
-        color="primary"
-        disabled={!isNextEnabled}
-      >
-        Next
-      </Button>
-    </div>
+      <Box className="BottomActionButtton">
+        <Button type="button" variant="contained" color="primary">
+          Back
+        </Button>
+        <Button
+          type="button"
+          onClick={handleClick}
+          variant="contained"
+          color="primary"
+          disabled={!isNextEnabled}
+        >
+          Next
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
