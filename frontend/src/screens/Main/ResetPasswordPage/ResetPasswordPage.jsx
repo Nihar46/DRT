@@ -9,6 +9,7 @@ const ResetPasswordPage = () => {
   const { resetPassword } = useAuth();
   const navigate = useNavigate();
   const [successfulPasswordReset, setSuccessfulPasswordReset] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
@@ -48,7 +49,7 @@ const ResetPasswordPage = () => {
                   <Button
                     variant="contained"
                     color="primary"
-                    type="submit"
+                    type="button"
                     fullWidth
                     onClick={() => {
                       navigate("/sign-in");

@@ -28,7 +28,7 @@ const useAuth = () => {
           autoClose: 5000,
           position: "top-center",
         });
-        navigate("/design-request-details");
+        navigate("/account-manager-dashboard");
       }
       console.log("LoginResponse:", response.data);
     } catch (error) {
@@ -77,10 +77,12 @@ const useAuth = () => {
 
   const resetPassword = async (password) => {
     try {
-      console.log("Password New:", password);
+      console.log("Password New HOOk:", password);
+      console.log("ID:", params.id);
+      console.log("Token:", params.token);
 
       const response = await axios.post(
-        `/user/${params.id}/reset-password/${params.token}`,
+        `/users/${params.id}/reset-password/${params.token}`,
         { password },
         { withCredentials: true, credentials: "include" }
       );
@@ -99,7 +101,7 @@ const useAuth = () => {
         autoClose: 2000,
         position: "top-center",
       });
-      navigate("/");
+      navigate("/sign-in");
     }
   };
 

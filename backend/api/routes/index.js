@@ -85,9 +85,6 @@ const routes = (app) => {
 
   app.post("/login", async (req, res) => {
     const { email, password } = req.body;
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("REQ BODY:", req.body);
 
     //Check that required fields are present
     if (!email || !password) {
@@ -201,6 +198,10 @@ const routes = (app) => {
 
   app.post("/users/:id/reset-password/:token", async (req, res) => {
     const { password } = req.body;
+
+    console.log("Password:", password);
+    console.log("Id:", req.params.id);
+    console.log("TOKEN:", req.params.token);
     try {
       const user = await User.findOne({
         where: {

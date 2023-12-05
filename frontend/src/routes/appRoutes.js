@@ -11,6 +11,11 @@ const ProductCatalog = lazy(() => import("../screens/Main/ProductCatalog"));
 const ProductDetailsPage = lazy(() =>
   import("../screens/Main/ProductDetailPage")
 );
+const AccountManagerDashboard = lazy(() =>
+  import("../screens/Main/AccountManagerDashboard")
+);
+
+const RequestStatus = lazy(() => import("../screens/Main/RequestStatus"));
 
 const PrivateRoutes = ({ as: Component, ...props }) => {
   const navigate = useNavigate();
@@ -39,6 +44,14 @@ const appNav = [
     //path: "/users/:id/reset-password/:token",
     path: "/product-details/:id",
     element: <ProductDetailsPage />,
+  },
+  {
+    path: "/account-manager-dashboard",
+    element: <AccountManagerDashboard />,
+  },
+  {
+    path: "/request-status",
+    element: <RequestStatus />,
   },
 ];
 

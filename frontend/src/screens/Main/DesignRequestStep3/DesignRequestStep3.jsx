@@ -1,5 +1,6 @@
 import React from "react";
 import { useStepContext } from "../../../context/StepFormContext";
+import useAccountManager from "../../../hooks/useAccountManager";
 import {
   Typography,
   Box,
@@ -17,6 +18,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const DesignRequestStep3 = () => {
   const { state } = useStepContext();
   const { designDetails, projectInformation } = state;
+  const { submitRequest } = useAccountManager();
+
+  const handleClick = () => {};
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -110,7 +114,12 @@ const DesignRequestStep3 = () => {
           </AccordionDetails>
         </Accordion>
       ))}
-      <Button type="button" variant="contained" color="primary">
+      <Button
+        type="button"
+        onClick={handleClick}
+        variant="contained"
+        color="primary"
+      >
         Submit Request
       </Button>
     </Box>
