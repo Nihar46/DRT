@@ -54,7 +54,7 @@ const theme = createTheme({
     },
     h4: {
       fontSize: 18,
-      fontWeight: 700,
+      fontWeight: 500,
       color: 'rgba(0, 0, 0, 0.87)',
       wordBreak: 'break-word',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {
@@ -78,7 +78,7 @@ const theme = createTheme({
     },
     h6: {
       fontSize: 15,
-      fontWeight: 600,
+      fontWeight: 400,
       color: 'rgba(0, 0, 0, 0.87)',
       wordBreak: 'break-word',
       '@media screen and (min-device-width: 768px) and (max-device-width: 1024px)': {

@@ -120,8 +120,9 @@ const DesignRequestStep3 = () => {
                 ))}
                     </Box>
                     </Box>
-                </Box>
-                    <Box className="RequestViewContent">
+                    </Box>
+                    <Box className="RequestViewSection">
+<Box className="RequestViewContent">
                       <Typography
                         variant="body2"
                         component="div"
@@ -185,6 +186,8 @@ const DesignRequestStep3 = () => {
                         {product.installation}
                       </Typography>
                     </Box>
+                    </Box>
+                    
                   </React.Fragment>
                 ))}
                 <Box className="RequestViewContent">

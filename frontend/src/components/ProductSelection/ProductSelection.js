@@ -187,28 +187,29 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
         </Grid>
       </Box>
       {/* List of selected products */}
-      <List className="ProductListBox">
+      <Box className="ProductListBoxFirst">
+        <Box mt={3}><Typography variant="h4" component="div" className="Lightgrey">Product</Typography></Box>
+        <Box className="ProductListBoxFirstContainer">
         {productList.map((product, index) => (
-          <ListItem
-            className="ProductListItem"
+          <Box
+            className="ProductListItemFirst"
             key={index}
             secondaryAction={
-              <>
-                <IconButton edge="end" onClick={() => editProduct(index)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton edge="end" onClick={() => deleteProduct(index)}>
-                  <DeleteIcon />
-                </IconButton>
+              <>              
+                
               </>
             }
           >
-            <Box className="ProductListInfo">
+            <Box className="ProductListInfoFirst">
+              <Box className="ProductTileContainer">
               <Typography
                 variant="body1"
                 component="div"
                 className="ProductTile"
-              ></Typography>
+                >
+                  <DeleteIcon edge="end" onClick={() => deleteProduct(index)} className="DeleteButton"/>
+              </Typography>
+                </Box>
               <Typography
                 variant="body1"
                 component="div"
@@ -237,14 +238,18 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
               >
                 {product.installation}
               </Typography>
+              <Typography edge="end" onClick={() => editProduct(index)} className="EditViewButton CustomLink UnderlineLink">
+                  Edit View
+                </Typography>
             </Box>
             {/* <Typography variant="body1">
               Brand: {product.brand}, Style: {product.style}, Color:{" "}
               {product.color}, Installation: {product.installation}
             </Typography> */}
-          </ListItem>
+          </Box>
         ))}
-      </List>
+          </Box>
+      </Box>
     </Box>
   );
 };

@@ -88,6 +88,7 @@ const AccountManagerDashboard = () => {
           variant="contained"
           color="primary"
           style={{ marginBottom: "20px" }}
+          onClick={() => navigate("/design-request-details")}
           // Add your logic here to handle the creation of a new request
         >
           Add new request

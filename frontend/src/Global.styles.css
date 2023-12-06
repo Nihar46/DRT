@@ -287,7 +287,7 @@ textarea:focus-visible {
   margin-bottom: 20px;
 }
 .UploadFileBox {
-  border: 1px dashed #ccc;
+  border: 2px dashed rgba(0, 0, 0, 0.12);
   display: flex;
   justify-content: center;
   min-height: 140px;
@@ -295,7 +295,7 @@ textarea:focus-visible {
   border-radius: 8px;
   text-align: center;
   margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 .RenderingNotes {
   margin-top: 20px;
@@ -307,13 +307,65 @@ textarea:focus-visible {
   margin-bottom: 3px;
 }
 .ProductTile {
-  width: 30px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   background: #003057;
+  border-radius: 4px;
+  position: relative;
+}
+.ProductTileContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.ProductListBoxFirstContainer {
+  display: flex;
+}
+.Lightgrey {
+  color: rgba(0, 0, 0, 0.6);
+}
+.ProductName, .ProductStyle, .ProductColor, .ProductInstallation, .EditViewButton {
+  font-size: 14px;
+  text-align: center;
+}
+.ProductName {
+  margin-top: 8px;
+}
+.ProductInstallation {
+  color: rgba(0, 0, 0, 0.6);
+}
+.FileIconCell {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+.ProductListItemFirst {
+  min-width: 160px;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+.DeleteButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: #fff;
+  font-size: 16px;
+  background-color: #C62828;
+  padding: 4px;
+  border-radius: 100%;
 }
 .ProductListBox {
-  /* margin-top: 20px; */
+  margin-top: 20px;
   /* margin-bottom: 50px; */
+}
+.ProductListBoxSecond {
+  /* margin-top: 20px; */
+  margin-bottom: 20px;
+}
+.ProductListBoxSecond .ProductListInfo {
+  min-height: 100px;
 }
 .BottomActionButtton {
   width: 100%;
@@ -325,26 +377,30 @@ textarea:focus-visible {
 .ProductListInfo {
   display: table;
   /* justify-content: space-between; */
-  width: calc(100% - 90px);
+  /* width: calc(100% - 90px); */
   /* align-items: flex-start; */
   table-layout: fixed;
   min-height: 50px;
   
 }
 .ProductInfoContainer {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  /* margin-top: 20px; */
 }
 .ProductListInfo .MuiTypography-root {
   display: table-cell;
   padding: 3px 10px;
   vertical-align: middle;
-  border-right: 1px solid #ccc;
+  /* border-right: 1px solid #ccc; */
 }
 .ProductListItem .MuiListItemSecondaryAction-root {
   text-align: center;
   padding: 0 10px;
   width: 70px;
   right: 0;
+}
+.ProductListItemSecond {
+  border-radius: 4px;
 }
 .RequestViewContent {
   margin-bottom: 30px;
@@ -359,7 +415,20 @@ textarea:focus-visible {
 .ArrowAccord {
   font-size: 35px;
 }
-
+.RequestViewSection {
+  display: flex;
+  justify-content: space-between;
+}
+.IconColor {
+  color: #2176B9;
+}
+.CustomLink {
+  color: #2176B9;
+  cursor: pointer;
+}
+.UnderlineLink {
+  text-decoration: underline;
+}
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   
 }

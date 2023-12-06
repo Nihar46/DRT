@@ -7,7 +7,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
-  Select,
+  Link,
   MenuItem,
   Button,
   FormControl,
@@ -20,11 +20,13 @@ import {
   TextareaAutosize,
 } from "@mui/material";
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDropzone } from "react-dropzone";
 import ProductSelection from "../ProductSelection";
 import { useStepContext } from "../../context/StepFormContext";
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+
 
 const DesignAccordion = ({ index, onDesignChange }) => {
   const navigate = useNavigate();
@@ -139,26 +141,27 @@ const DesignAccordion = ({ index, onDesignChange }) => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails className="AccordionContentBox">
-          <ProductSelection
-            onSubmitDesignDetails={handleOnSubmitDesignDetails}
-          />
           <Box {...getRootProps()} className="UploadFileBox">
             <input {...getInputProps()} />
+            <Box>
+              <UploadFileIcon className="IconColor" />
             <Typography variant="body1" component="div">
-              Drag 'n' drop some files here,{" "}
+              <Link className="CustomLink UnderlineLink">Click to upload</Link> or drag and drop the room scene
               <Box component="div" mt={1} mb={1}>
-                or
+                <Typography variant="body2">
+                SVG, PNG, JPG or GIF (max. 3MB)
+              </Typography>
               </Box>
-              <Button variant="contained" color="primary">
-                Click to select files
-              </Button>
+              
             </Typography>
+            </Box>
+            
           </Box>
-          <List className="ProductListBox">
+          <List className="ProductListBox ProductListBoxSecond">
             {uploadedFiles.map((file, idx) => (
               <ListItem
                 key={idx}
-                className="ProductListItem"
+                className="ProductListItem ProductListItemSecond"
                 secondaryAction={
                   <>
                     <IconButton
@@ -170,6 +173,7 @@ const DesignAccordion = ({ index, onDesignChange }) => {
                   </>
                 }
               >
+                <Box className="FileIconCell"><InsertPhotoOutlinedIcon color="primary" className="FilesIcon" /></Box>
                 <Box className="ProductListInfo">
                   <Typography
                     variant="body1"
@@ -191,6 +195,10 @@ const DesignAccordion = ({ index, onDesignChange }) => {
               </ListItem>
             ))}
           </List>
+          <ProductSelection
+            onSubmitDesignDetails={handleOnSubmitDesignDetails}
+          />
+          
           {/*<FormControl fullWidth margin="normal">
           <InputLabel>Type</InputLabel>
           <Select value={selectedType} label="Type" onChange={handleTypeChange}>
