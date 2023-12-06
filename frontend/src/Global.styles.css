@@ -429,6 +429,27 @@ textarea:focus-visible {
 .UnderlineLink {
   text-decoration: underline;
 }
+.SideSpacing {
+  padding-left:30px;
+  padding-right: 30px;
+}
+.MyRequestButton {
+  margin-right: 20px;
+}
+.CustomTabsBox {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MaterialTableBox button {
+  color: #2176B9;
+}
+.MuiTablePagination-root .MuiFormLabel-root {
+  color: #003057;
+}
+.MuiTablePagination-root .MuiInputBase-root svg.MuiSvgIcon-root {
+  right: 5px;
+  position: relative;
+}
+.MaterialTableBox .MuiTableRow-root { cursor: pointer;}
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   
 }

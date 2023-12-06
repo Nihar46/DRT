@@ -1,10 +1,95 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MaterialReactTable } from "material-react-table";
-import { Button, Tab, Tabs } from "@mui/material";
 import Header from "../../../components/Header";
+import AddIcon from "@mui/icons-material/Add";
+import {
+  Grid,
+  Typography,
+  Box,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  Accordion,
+  Button,
+  AccordionSummary,
+  AccordionDetails, Tab, Tabs
+} from "@mui/material";
 // Dummy data for the tables
 const designRequestsData = [
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
+  {
+    projectName: "Alpha",
+    accountManager: "John Doe",
+    requests: 5,
+    projectId: "A001",
+    status: "In Progress",
+    dueDate: "2023-08-01",
+  },
   {
     projectName: "Alpha",
     accountManager: "John Doe",
@@ -25,6 +110,87 @@ const completedRequestsData = [
     status: "Completed",
     dueDate: "2023-07-20",
   },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+  {
+    projectName: "Beta",
+    accountManager: "Jane Smith",
+    requests: 3,
+    projectId: "B002",
+    status: "Completed",
+    dueDate: "2023-07-20",
+  },
+
   // ... other dummy data
 ];
 
@@ -83,30 +249,38 @@ const AccountManagerDashboard = () => {
   return (
     <>
       <Header />
-      <div style={{ padding: "20px" }}>
+      <Grid container direction="row" className="PageSpacing SideSpacing">
+      <Grid item xs={12} md={12} className="">
         <Button
           variant="contained"
           color="primary"
           style={{ marginBottom: "20px" }}
-          onClick={() => navigate("/design-request-details")}
+            onClick={() => navigate("/design-request-details")}
+            startIcon={<AddIcon />}
           // Add your logic here to handle the creation of a new request
         >
           Add new request
-        </Button>
-        <Tabs
+          </Button>
+        </Grid>
+        <Grid item xs={12} md={12} className="">
+          <Tabs
+            className="CustomTabsBox"
           value={tabIndex}
           onChange={(event, newValue) => setTabIndex(newValue)}
           aria-label="Design and Completed Requests Tabs"
         >
           <Tab label="Design Requests" />
           <Tab label="Completed Requests" />
-        </Tabs>
-        <MaterialReactTable
+          </Tabs>
+          <Box className="MaterialTableBox">
+          <MaterialReactTable           
           columns={columns}
           data={tabIndex === 0 ? designRequestsData : completedRequestsData}
           // Add any additional props you need for the table here
-        />
-      </div>
+            />
+            </Box>
+          </Grid>
+       </Grid>
     </>
   );
 };

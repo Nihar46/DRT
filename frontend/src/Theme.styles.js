@@ -113,6 +113,13 @@ const theme = createTheme({
   },
 
   components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: "#003057",
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {

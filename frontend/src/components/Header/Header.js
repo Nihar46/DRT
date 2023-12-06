@@ -39,6 +39,7 @@ const Header = () => {
               variant="contained"
               color="secondary"
               onClick={() => navigate("/account-manager-dashboard")}
+              className="MyRequestButton"
             >
               My Requests
             </Button>
