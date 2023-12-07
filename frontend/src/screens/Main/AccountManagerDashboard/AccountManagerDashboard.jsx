@@ -14,7 +14,9 @@ import {
   Accordion,
   Button,
   AccordionSummary,
-  AccordionDetails, Tab, Tabs
+  AccordionDetails,
+  Tab,
+  Tabs,
 } from "@mui/material";
 // Dummy data for the tables
 const designRequestsData = [
@@ -250,37 +252,37 @@ const AccountManagerDashboard = () => {
     <>
       <Header />
       <Grid container direction="row" className="PageSpacing SideSpacing">
-      <Grid item xs={12} md={12} className="">
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ marginBottom: "20px" }}
+        <Grid item xs={12} md={12} className="">
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginBottom: "20px" }}
             onClick={() => navigate("/design-request-details")}
             startIcon={<AddIcon />}
-          // Add your logic here to handle the creation of a new request
-        >
-          Add new request
+            // Add your logic here to handle the creation of a new request
+          >
+            Add new request
           </Button>
         </Grid>
         <Grid item xs={12} md={12} className="">
           <Tabs
             className="CustomTabsBox"
-          value={tabIndex}
-          onChange={(event, newValue) => setTabIndex(newValue)}
-          aria-label="Design and Completed Requests Tabs"
-        >
-          <Tab label="Design Requests" />
-          <Tab label="Completed Requests" />
+            value={tabIndex}
+            onChange={(event, newValue) => setTabIndex(newValue)}
+            aria-label="Design and Completed Requests Tabs"
+          >
+            <Tab label="Design Requests" />
+            <Tab label="Completed Requests" />
           </Tabs>
           <Box className="MaterialTableBox">
-          <MaterialReactTable           
-          columns={columns}
-          data={tabIndex === 0 ? designRequestsData : completedRequestsData}
-          // Add any additional props you need for the table here
+            <MaterialReactTable
+              columns={columns}
+              data={tabIndex === 0 ? designRequestsData : completedRequestsData}
+              // Add any additional props you need for the table here
             />
-            </Box>
-          </Grid>
-       </Grid>
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };
