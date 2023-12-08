@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import Header from "../../../components/Header"; // Adjust the path based on your file structure
 import "./ProductCatalog.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, MenuItem, Select, Tab, Tabs, Typography } from "@mui/material";
 // Dummy data for filters
 
 import image1 from "../../../assets/floor/image1.jpg";
@@ -20,6 +21,39 @@ import image9 from "../../../assets/floor/image9.jpg";
 import ArrowBack from "@mui/icons-material/ArrowBack";
 
 import { useNavigate } from "react-router-dom";
+
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box /* sx={{ p: 3 }} */>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const filterOptions = {
   styles: ["Loop", "Pattern", "Texture"],
@@ -494,7 +528,7 @@ const tabsData = {
   },
 };
 
-const Tabs = ({ activeTab, setActiveTab }) => (
+/* const Tabs = ({ activeTab, setActiveTab }) => (
   <div className="tabs">
     {Object.keys(tabsData).map((category) => (
       <button
@@ -506,7 +540,7 @@ const Tabs = ({ activeTab, setActiveTab }) => (
       </button>
     ))}
   </div>
-);
+); */
 
 const ProductGrid = ({ products, nav_func }) => (
   <div className="product-grid">
@@ -531,6 +565,13 @@ const ProductGrid = ({ products, nav_func }) => (
 );
 
 function ProductCatalog() {
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const [activeProducts, setActiveProducts] = useState(initialProducts);
   const [activeTab, setActiveTab] = useState("styles");
   const [sortOrder, setSortOrder] = useState("Ascending");
@@ -703,7 +744,14 @@ function ProductCatalog() {
             ))}
           </div>
           <div className="main-content">
-            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+              <Tab label="STYLES" {...a11yProps(0)} />
+              <Tab label="COLORWAYS" {...a11yProps(1)} />
+              <Tab label="COLLECTIONS" {...a11yProps(2)} />
+            </Tabs>
+
+            <CustomTabPanel value={value} index={0}>
+              {/* <Tabs activeTab={activeTab} setActiveTab={setActiveTab} /> */}
             <Box className="results-sort" p={2}>
               <Typography variant="h6">{tabsData[activeTab].products.length} RESULTS</Typography>
               <Box display="flex" alignItems="center" sx={{ width: 270 }}>
@@ -742,6 +790,92 @@ function ProductCatalog() {
                 </Button>
               )}
             </Box>
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+              {/* <Tabs activeTab={activeTab} setActiveTab={setActiveTab} /> */}
+            <Box className="results-sort" p={2}>
+              <Typography variant="h6">{tabsData[activeTab].products.length} RESULTS</Typography>
+              <Box display="flex" alignItems="center" sx={{ width: 270 }}>
+                <Box sx={{ width: '70px'}}>
+                  <Typography variant="h6">SORT</Typography>
+                </Box>
+                {/* <select value={sortOrder} onChange={handleSortChange}>
+                  <option value="Ascending">Ascending</option>
+                  <option value="Descending">Descending</option>
+                </select> */}
+                <Box sx={{ width: 1 }}>
+                  <Select fullWidth>
+                    <MenuItem selected value="option1">Ascending</MenuItem>
+                    <MenuItem value="option2">Descending</MenuItem>
+                  </Select>
+                  </Box>
+              </Box>
+            </Box>
+            <ProductGrid
+              products={activeProducts}
+              nav_func={nav_to_details_page}
+            />
+
+            <Box className="pagination" mt={5} sx={{ borderTop: 1, borderColor: 'grey.500' }}>
+              <Typography variant="h6">
+                Showing {activeProducts.length} of {tabsData[activeTab].count}
+              </Typography>
+              {visibleCounts[activeTab] < tabsData[activeTab].count && (
+                <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
+                  SHOW MORE
+                </Button>
+              )}
+              {visibleCounts[activeTab] > productsPerPage && (
+                <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
+                  SHOW LESS
+                </Button>
+              )}
+            </Box>
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+              {/* <Tabs activeTab={activeTab} setActiveTab={setActiveTab} /> */}
+            <Box className="results-sort" p={2}>
+              <Typography variant="h6">{tabsData[activeTab].products.length} RESULTS</Typography>
+              <Box display="flex" alignItems="center" sx={{ width: 270 }}>
+                <Box sx={{ width: '70px'}}>
+                  <Typography variant="h6">SORT</Typography>
+                </Box>
+                {/* <select value={sortOrder} onChange={handleSortChange}>
+                  <option value="Ascending">Ascending</option>
+                  <option value="Descending">Descending</option>
+                </select> */}
+                <Box sx={{ width: 1 }}>
+                  <Select fullWidth>
+                    <MenuItem selected value="option1">Ascending</MenuItem>
+                    <MenuItem value="option2">Descending</MenuItem>
+                  </Select>
+                  </Box>
+              </Box>
+            </Box>
+            <ProductGrid
+              products={activeProducts}
+              nav_func={nav_to_details_page}
+            />
+
+            <Box className="pagination" mt={5} sx={{ borderTop: 1, borderColor: 'grey.500' }}>
+              <Typography variant="h6">
+                Showing {activeProducts.length} of {tabsData[activeTab].count}
+              </Typography>
+              {visibleCounts[activeTab] < tabsData[activeTab].count && (
+                <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
+                  SHOW MORE
+                </Button>
+              )}
+              {visibleCounts[activeTab] > productsPerPage && (
+                <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
+                  SHOW LESS
+                </Button>
+              )}
+            </Box>
+            </CustomTabPanel>
+
+
+            
           </div>
         </div>
       </Box>
