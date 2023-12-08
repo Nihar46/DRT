@@ -186,6 +186,7 @@ const theme = createTheme({
           fontWeight: 400,
           border: "1px solid rgba(0, 0, 0, 0.12)",
           borderRadius: 8,
+          background: "#fff",
           "&.Mui-focused": {
             borderColor: "#003057",
             boxShadow: "0px 1px 8px #003057",

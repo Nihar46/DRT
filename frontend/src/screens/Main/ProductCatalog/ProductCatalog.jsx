@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import { Box, Button, Checkbox, FormControl, FormControlLabel, FormGroup, MenuItem, Select, Typography } from "@mui/material";
 // Dummy data for filters
 
 import image1 from "../../../assets/floor/image1.jpg";
@@ -518,10 +518,12 @@ const ProductGrid = ({ products, nav_func }) => (
           className="product-image"
         />
         <div className="product-info">
-          <h3 className="product-name">{product.name}</h3>
-          <button onClick={() => nav_func(product.id)}>
-            See Product Details
-          </button>
+          <Typography variant="h4" className="product-name">{product.name}</Typography>
+          <Box mt={2}>
+            <Button variant="contained" onClick={() => nav_func(product.id)}>
+              See Product Details
+            </Button>
+          </Box>
         </div>
       </div>
     ))}
@@ -656,6 +658,7 @@ function ProductCatalog() {
         </Box>
         <div className="product-page">
           <div className="sidebar">
+            <Box p={1}><Typography variant="h4">FILTERS</Typography></Box>
             {Object.entries(filterOptions).map(([filterType, options]) => (
               <Accordion
                 key={filterType}
@@ -667,52 +670,78 @@ function ProductCatalog() {
                     {option}
                   </label>
                 ))} */}
-
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={["accountManager"]}
-                      onChange={handleFilterChange}
-                      name="accountManager"
-                    />
-                  }
-                  label="Show Account Managers"
-                />
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        /* checked={["accountManager"]} */
+                        name="express"
+                      />
+                    }
+                    label="Express"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        /* checked={["accountManager"]} */
+                        name="ondemand"
+                      />
+                    }
+                    label="On Demand"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        /* checked={["accountManager"]} */
+                        name="quickrange"
+                      />
+                    }
+                    label="Quick Range"
+                  />
+                </FormGroup>
               </Accordion>
             ))}
           </div>
           <div className="main-content">
             <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-            <div className="results-sort">
-              <span>{tabsData[activeTab].products.length} RESULTS</span>
-              <div>
-                <span>SORT</span>
-                <select value={sortOrder} onChange={handleSortChange}>
+            <Box className="results-sort" p={2}>
+              <Typography variant="h6">{tabsData[activeTab].products.length} RESULTS</Typography>
+              <Box display="flex" alignItems="center" sx={{ width: 270 }}>
+                <Box sx={{ width: '70px'}}>
+                  <Typography variant="h6">SORT</Typography>
+                </Box>
+                {/* <select value={sortOrder} onChange={handleSortChange}>
                   <option value="Ascending">Ascending</option>
                   <option value="Descending">Descending</option>
-                </select>
-              </div>
-            </div>
+                </select> */}
+                <Box sx={{ width: 1 }}>
+                  <Select fullWidth>
+                    <MenuItem selected value="option1">Ascending</MenuItem>
+                    <MenuItem value="option2">Descending</MenuItem>
+                  </Select>
+                  </Box>
+              </Box>
+            </Box>
             <ProductGrid
               products={activeProducts}
               nav_func={nav_to_details_page}
             />
 
-            <div className="pagination">
-              <span>
+            <Box className="pagination" mt={5} sx={{ borderTop: 1, borderColor: 'grey.500' }}>
+              <Typography variant="h6">
                 Showing {activeProducts.length} of {tabsData[activeTab].count}
-              </span>
+              </Typography>
               {visibleCounts[activeTab] < tabsData[activeTab].count && (
-                <button onClick={showMoreProducts} className="show-more-button">
+                <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
                   SHOW MORE
-                </button>
+                </Button>
               )}
               {visibleCounts[activeTab] > productsPerPage && (
-                <button onClick={showLessProducts} className="show-less-button">
+                <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
                   SHOW LESS
-                </button>
+                </Button>
               )}
-            </div>
+            </Box>
           </div>
         </div>
       </Box>
