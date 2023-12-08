@@ -26,21 +26,36 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import "./AdminLandingScreen.css";
 
 const Counter = ({ label, value, onIncrement, onDecrement }) => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <Button onClick={onDecrement} variant="outlined" color="primary">
-        <RemoveIcon />
-      </Button>
-      <Box sx={{ mx: 2, width: "3em", textAlign: "center" }}>
+    <Box pl={3} sx={{ display: "flex" }}>
+      <Box mt={.5}>
         <Typography variant="body1">
-          {label}: {value}
+          {label}
         </Typography>
       </Box>
-      <Button onClick={onIncrement} variant="outlined" color="primary">
-        <AddIcon />
-      </Button>
+      <Box display="flex" ml={2} flexDirection="column">
+        <Box display="flex" alignItems="center">
+          <Button onClick={onDecrement} variant="outlined" color="primary">
+            <RemoveIcon />
+          </Button>
+          <Box sx={{ mx: 2, textAlign: "center" }}>
+            <Typography variant="body1">
+              {value}
+            </Typography>
+          </Box>
+          <Button onClick={onIncrement} variant="outlined" color="primary">
+            <AddIcon />
+          </Button>
+        </Box>
+        <Box display="flex" justifyContent="center" mt={1}>
+          <Typography variant="body1">
+            Business Days
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   );
 };
@@ -67,11 +82,11 @@ const MainComponent = () => {
       <Stack
         direction="row"
         spacing={2}
-        alignItems="center"
-        justifyContent="space-between"
-        mb={2}
+        justifyContent="flex-end"
+        m={2}
       >
         <Counter
+          className="CounterText"
           label="Lead Time for New Requests"
           value={leadTime}
           onIncrement={incrementLeadTime}

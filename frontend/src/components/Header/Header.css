@@ -25,3 +25,7 @@ button {
 .LogoImg {
   margin-right: 40px;
 }
+
+.nav button:hover {
+  border-bottom: 2px solid #F1A12F;
+}

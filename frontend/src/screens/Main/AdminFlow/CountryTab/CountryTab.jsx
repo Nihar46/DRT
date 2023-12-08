@@ -17,6 +17,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Grid,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -135,13 +136,13 @@ const CountryTab = () => {
     width: 400,
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: 4,
+    p: 3,
     outline: "none", // to remove the default focus outline
   };
 
   return (
     <Box sx={{ p: 2 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
         <TextField
           label="Search"
           variant="outlined"
@@ -164,10 +165,11 @@ const CountryTab = () => {
         aria-describedby="add-country-modal-description"
       >
         <Box sx={modalStyle}>
-          <Typography id="add-country-modal-title" variant="h6" component="h2">
+          <Typography id="add-country-modal-title" variant="h4" component="h2">
             Add Country
           </Typography>
           <TextField
+            sx={{ my: 3 }}
             label="Country Name"
             value={countryName}
             onChange={(e) => setCountryName(e.target.value)}
@@ -175,6 +177,7 @@ const CountryTab = () => {
             fullWidth
           />
           <Autocomplete
+            
             options={admins}
             value={assignedAdmin}
             onChange={(event, newValue) => {
@@ -182,6 +185,7 @@ const CountryTab = () => {
             }}
             renderInput={(params) => (
               <TextField
+                sx={{ m: 0 }}
                 {...params}
                 label="Assigned Admin"
                 margin="normal"
@@ -192,37 +196,49 @@ const CountryTab = () => {
           {regionDivisions.map((pair, index) => (
             <Box
               key={index}
-              sx={{ display: "flex", alignItems: "center", mt: 2 }}
+              sx={{ display: "flex", alignItems: "center", my: 3}}
             >
-              <TextField
-                label="Regions"
-                value={pair.region}
-                onChange={(e) =>
-                  handleRegionDivisionChange(index, "region", e.target.value)
-                }
-                margin="normal"
-                sx={{ mr: 1 }}
-              />
-              <TextField
-                label="Divisions"
-                value={pair.division}
-                onChange={(e) =>
-                  handleRegionDivisionChange(index, "division", e.target.value)
-                }
-                margin="normal"
-                sx={{ mr: 1 }}
-              />
-              <IconButton onClick={() => handleRemoveRegionDivision(index)}>
-                <DeleteIcon />
-              </IconButton>
+              <Box>
+                <TextField
+                  sx={{ m: 0 }}
+                  label="Regions"
+                  value={pair.region}
+                  onChange={(e) =>
+                    handleRegionDivisionChange(index, "region", e.target.value)
+                  }
+                  margin="normal"
+                />
+              </Box>
+              <Box pl={2}>
+                <TextField
+                  sx={{ m: 0 }}
+                  label="Divisions"
+                  value={pair.division}
+                  onChange={(e) =>
+                    handleRegionDivisionChange(index, "division", e.target.value)
+                  }
+                  margin="normal"
+                />
+              </Box>
+              <Box>
+                <IconButton onClick={() => handleRemoveRegionDivision(index)}>
+                  <DeleteIcon />
+                </IconButton>
+              </Box>
             </Box>
           ))}
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-            <Button onClick={() => setModalOpen(false)}>Cancel</Button>
-            <Button startIcon={<AddIcon />} onClick={handleAddRegionDivision}>
+          <Box display="flex" sx={{ my: 3 }}>
+            <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleAddRegionDivision}>
               Add
             </Button>
-            <Button onClick={handleSaveCountry}>Save</Button>
+          </Box>
+          <Box display="flex" justifyContent="center">
+            <Box mx={1}>
+              <Button variant="contained" color="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
+            </Box>
+            <Box mx={1}>
+              <Button variant="contained" color="primary" onClick={handleSaveCountry}>Save</Button>
+            </Box>
           </Box>
         </Box>
       </Modal>

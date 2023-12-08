@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   Box,
   Checkbox,
@@ -17,6 +18,11 @@ import {
   Paper,
   IconButton,
   Stack,
+  FormControl,
+  Autocomplete,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -32,7 +38,7 @@ const modalStyle = {
   width: 400,
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4,
+  p: 3,
 };
 
 const UsersTab = () => {
@@ -130,61 +136,76 @@ const UsersTab = () => {
     setModalOpen(false);
   };
 
+  const DesignInputType = [
+    { label: "The Shawshank Redemption", year: 1994 },
+    { label: "The Godfather", year: 1972 },
+    { label: "The Godfather: Part II", year: 1974 },
+  ];
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm();
+
   return (
     <>
       <Box sx={{ p: 2 }}>
-        <FormGroup row>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!filters["accountManager"]}
-                onChange={handleFilterChange}
-                name="accountManager"
-              />
-            }
-            label="Show Account Managers"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!filters["designer"]}
-                onChange={handleFilterChange}
-                name="designer"
-              />
-            }
-            label="Show Designers"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!filters["admin"]}
-                onChange={handleFilterChange}
-                name="admin"
-              />
-            }
-            label="Show Admins"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!filters["adminDesigner"]}
-                onChange={handleFilterChange}
-                name="adminDesigner"
-              />
-            }
-            label="Show Admin/Designers"
-          />
-        </FormGroup>
-        <TextField
-          label="Search"
-          variant="outlined"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          sx={{ mb: 2, width: "100%" }}
-        />
-        <Button variant="contained" onClick={handleOpenModal} sx={{ my: 2 }}>
-          Add New User
-        </Button>
+        <Box display="flex" justifyContent="space-between" mb={3}>
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={!!filters["accountManager"]}
+                  onChange={handleFilterChange}
+                  name="accountManager"
+                />
+              }
+              label="Show Account Managers"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={!!filters["designer"]}
+                  onChange={handleFilterChange}
+                  name="designer"
+                />
+              }
+              label="Show Designers"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={!!filters["admin"]}
+                  onChange={handleFilterChange}
+                  name="admin"
+                />
+              }
+              label="Show Admins"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={!!filters["adminDesigner"]}
+                  onChange={handleFilterChange}
+                  name="adminDesigner"
+                />
+              }
+              label="Show Admin/Designers"
+            />
+          </FormGroup>
+          <Box display="flex">
+            <TextField
+              label="Search"
+              variant="outlined"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <Button variant="contained" onClick={handleOpenModal} sx={{ ml: 2 }}>
+              Add New User
+            </Button>
+          </Box>
+        </Box>
 
         <Modal
           open={modalOpen}
@@ -193,20 +214,49 @@ const UsersTab = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={modalStyle}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="modal-modal-title" variant="h4" component="h2">
               Add New User
             </Typography>
-            <TextField label="Name" fullWidth sx={{ my: 2 }} />
-            <TextField label="Email" fullWidth sx={{ my: 2 }} />
-            <TextField label="User Type" fullWidth sx={{ my: 2 }} />
-            <Button
-              onClick={handleCloseModal}
-              variant="contained"
-              color="primary"
-            >
-              Close
-            </Button>
-            <Button onClick={handleAddNewUser}>Add</Button>
+            <TextField label="Name" fullWidth sx={{ my: 3 }} />
+            <TextField label="Email" fullWidth sx={{ mb: 1 }} />
+            {/* <TextField label="User Type" fullWidth sx={{ mb: 2 }} /> */}
+            <FormControl fullWidth margin="normal" sx={{ mb: 3 }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={DesignInputType}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+                renderInput={(params) => (
+                  <TextField {...params} label="User Type" />
+                )}
+                {...register("designInputType", {
+                  required: "Please select an option",
+                })}
+                error={!!errors.designInputType}
+                helperText={
+                  errors.designInputType ? "Please select an option" : ""
+                }
+              />
+            </FormControl>
+            <Box display="flex" justifyContent="center">
+              <Box mx={1}>
+                <Button
+                  onClick={handleCloseModal}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Close
+                </Button>
+              </Box>
+              <Box mx={1}>
+                <Button 
+                  variant="contained"
+                  color="primary" onClick={handleAddNewUser}>Add</Button>
+                </Box>
+            </Box>
           </Box>
         </Modal>
 
