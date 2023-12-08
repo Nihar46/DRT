@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Button } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Typography } from "@mui/material";
 // Dummy data for filters
 
 import image1 from "../../../assets/floor/image1.jpg";
@@ -109,12 +109,12 @@ const Accordion = ({ title, children }) => {
 
   return (
     <div className="accordion">
-      <button className="accordion-title" onClick={() => setIsOpen(!isOpen)}>
+      <Button className="accordion-title" onClick={() => setIsOpen(!isOpen)}>
         {title}{" "}
         <span className="accordion-arrow">
           {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </span>
-      </button>
+      </Button>
       {isOpen && <div className="accordion-content">{children}</div>}
     </div>
   );
@@ -624,83 +624,99 @@ function ProductCatalog() {
   };
 
   return (
-    <div>
+    <Box>
       {/*<Header />*/}
-      <div className="back-container">
-        <Button
-          type="button"
-          onClick={() => navigate("/design-request-details")}
-          variant="contained"
-          color="primary"
-        >
-          Back
-        </Button>
-      </div>
-      <div className="search-bar-container">
-        <h1>CARPET TILES & PLANKS</h1>
-        <div className="search-bar">
-          <button>
-            <SearchIcon />
-          </button>
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={handleSearch}
-          />
+      <Box p={2}>
+        <div className="back-container">
+          <Button
+            type="button"
+            onClick={() => navigate("/design-request-details")}
+            variant=""
+            color="primary"
+            startIcon={<ArrowBackIcon />}
+          >
+            Back
+          </Button>
         </div>
-      </div>
-      <div className="product-page">
-        <div className="sidebar">
-          {Object.entries(filterOptions).map(([filterType, options]) => (
-            <Accordion
-              key={filterType}
-              title={filterType.charAt(0).toUpperCase() + filterType.slice(1)}
-            >
-              {options.map((option) => (
-                <label key={option} className="filter-option">
-                  <input type="checkbox" />
-                  {option}
-                </label>
-              ))}
-            </Accordion>
-          ))}
-        </div>
-        <div className="main-content">
-          <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-          <div className="results-sort">
-            <span>{tabsData[activeTab].products.length} RESULTS</span>
-            <div>
-              <span>SORT</span>
-              <select value={sortOrder} onChange={handleSortChange}>
-                <option value="Ascending">Ascending</option>
-                <option value="Descending">Descending</option>
-              </select>
+        <Box className="search-bar-container" display="flex" justifyContent="space-between">
+          <Box width={1/3}>
+            <Typography variant="h2">CARPET TILES & PLANKS</Typography>
+          </Box>
+          <Box className="search-bar" width={1/4}>
+            <button>
+              <SearchIcon />
+            </button>
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+          </Box>
+        </Box>
+        <div className="product-page">
+          <div className="sidebar">
+            {Object.entries(filterOptions).map(([filterType, options]) => (
+              <Accordion
+                key={filterType}
+                title={filterType.charAt(0).toUpperCase() + filterType.slice(1)}
+              >
+                {/* {options.map((option) => (
+                  <label key={option} className="filter-option">
+                    <input type="checkbox" />
+                    {option}
+                  </label>
+                ))} */}
+
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={["accountManager"]}
+                      onChange={handleFilterChange}
+                      name="accountManager"
+                    />
+                  }
+                  label="Show Account Managers"
+                />
+              </Accordion>
+            ))}
+          </div>
+          <div className="main-content">
+            <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
+            <div className="results-sort">
+              <span>{tabsData[activeTab].products.length} RESULTS</span>
+              <div>
+                <span>SORT</span>
+                <select value={sortOrder} onChange={handleSortChange}>
+                  <option value="Ascending">Ascending</option>
+                  <option value="Descending">Descending</option>
+                </select>
+              </div>
+            </div>
+            <ProductGrid
+              products={activeProducts}
+              nav_func={nav_to_details_page}
+            />
+
+            <div className="pagination">
+              <span>
+                Showing {activeProducts.length} of {tabsData[activeTab].count}
+              </span>
+              {visibleCounts[activeTab] < tabsData[activeTab].count && (
+                <button onClick={showMoreProducts} className="show-more-button">
+                  SHOW MORE
+                </button>
+              )}
+              {visibleCounts[activeTab] > productsPerPage && (
+                <button onClick={showLessProducts} className="show-less-button">
+                  SHOW LESS
+                </button>
+              )}
             </div>
           </div>
-          <ProductGrid
-            products={activeProducts}
-            nav_func={nav_to_details_page}
-          />
-
-          <div className="pagination">
-            <span>
-              Showing {activeProducts.length} of {tabsData[activeTab].count}
-            </span>
-            {visibleCounts[activeTab] < tabsData[activeTab].count && (
-              <button onClick={showMoreProducts} className="show-more-button">
-                SHOW MORE
-              </button>
-            )}
-            {visibleCounts[activeTab] > productsPerPage && (
-              <button onClick={showLessProducts} className="show-less-button">
-                SHOW LESS
-              </button>
-            )}
-          </div>
         </div>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

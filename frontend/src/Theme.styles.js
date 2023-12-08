@@ -263,6 +263,7 @@ const theme = createTheme({
           fontSize: 15,
           fontWeight: "500",
           borderRadius: "4",
+          border: "1px solid transparent",
           "@media screen and (min-device-width: 768px) and (max-device-width: 1024px)":
             {
               fontSize: 15,

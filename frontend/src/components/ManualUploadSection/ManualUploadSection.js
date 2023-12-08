@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Box, Button, Paper, Typography, Link } from "@mui/material";
+import { Box, Button, Paper, Typography, Link, Grid } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -42,54 +42,65 @@ const ManualUploadSection = ({ title }) => {
   };
 
   return (
-    <Box sx={{ p: 2, m: 1 }}>
-      <Typography variant="h6">{title}</Typography>
-      <Paper
-        {...getRootProps()}
-        sx={{
-          p: 2,
-          mt: 1,
-          mb: 2,
-          border: "1px dashed grey",
-          bgcolor: "#fafafa",
-          textAlign: "center",
-          cursor: "pointer",
-        }}
-      >
-        <input {...getInputProps()} />
-        {file ? (
-          <Typography>{file.name}</Typography>
-        ) : (
-          <Typography>
-            Click here or drag file into this box to upload.
-          </Typography>
-        )}
-      </Paper>
-      {file && (
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Button
-            variant="contained"
-            color="error"
-            startIcon={<DeleteIcon />}
-            onClick={removeFile}
-            sx={{ mr: 1 }}
+    <Grid item xs={6}>
+      <Box sx={{ p: 2, m: 1 }}>
+        <Typography variant="h4">{title}</Typography>
+        <Paper
+          {...getRootProps()}
+          sx={{
+            p: 2,
+            mt: 1,
+            mb: 2,
+            border: "1px dashed grey",
+            bgcolor: "#fafafa",
+            textAlign: "center",
+            cursor: "pointer",
+          }}
+        >
+          <input {...getInputProps()} />
+          {file ? (
+            <Typography>{file.name}</Typography>
+          ) : (
+            <Typography>
+              Click here or drag file into this box to upload.
+            </Typography>
+          )}
+        </Paper>
+        <Button
+          variant="contained"
+          onClick={handleDownload}
+          disabled={!file}
+          sx={{ mb: 2 }}
+        >
+          Save PDF
+        </Button>
+        {file && (
+          <Box
+            border={1}
+            p={1}
+            borderRadius={1}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              borderColor: "grey.500",
+            }}
           >
-            Remove
-          </Button>
-          <Typography variant="body1" component={Link} href="#" download>
-            {file.name}
-          </Typography>
-        </Box>
-      )}
-      <Button
-        variant="contained"
-        onClick={handleDownload}
-        disabled={!file}
-        sx={{ mt: 2 }}
-      >
-        Save PDF
-      </Button>
-    </Box>
+            <Typography variant="body1" component={Link} href="#" download>
+              {file.name}
+            </Typography>
+            <Button
+              variant="contained"
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={removeFile}
+            >
+              Remove
+            </Button>
+          </Box>
+        )}
+      </Box>
+    </Grid>
   );
 };
 

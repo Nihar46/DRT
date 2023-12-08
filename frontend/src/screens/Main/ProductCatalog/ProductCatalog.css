@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #f8f8f8; /* Example color */
+  /* background-color: #f8f8f8; */ /* Example color */
 }
 
 .search-bar {
@@ -37,28 +37,38 @@
 .sidebar {
   flex: 2;
   width: 450px; /* Adjust the width of the sidebar as needed */
-  padding: 20px;
-  background-color: #f5f5f5;
+  padding: 20px 10px;
+  /* background-color: #f5f5f5; */
   /* Ensure the sidebar has a height to match the main content for a consistent look */
   min-height: 100vh;
 }
 
-.accordion {
+/* .accordion {
   margin-bottom: 10px;
-}
+} */
 
 .accordion-title {
   width: 100%;
   padding: 10px;
   border: none;
   text-align: left;
-  background-color: #ddd;
+  background-color: transparent;
   cursor: pointer;
+  margin: 0;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0;
+}
+
+.accordion-title:hover {
+  border: none;
 }
 
 .accordion-content {
   padding: 10px;
-  background-color: #eee;
+  /* background-color: #eee; */
 }
 
 .accordion-arrow {
@@ -78,9 +88,9 @@
 }
 
 .search-bar {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   padding: 10px;
-  width: 100%;
+  /* width: 100%; */
   box-sizing: border-box;
 }
 
