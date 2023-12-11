@@ -14,15 +14,19 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
+import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
 
 const DesignRequestStep3 = () => {
   const { state } = useStepContext();
   const { designDetails, projectInformation } = state;
   const { submitRequest } = useAccountManager();
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    if (state.projectInformation && state.designDetails) {
+      submitRequest(state.projectInformation, state.designDetails);
+    }
+  };
 
   return (
     <Paper>
@@ -87,7 +91,7 @@ const DesignRequestStep3 = () => {
           <Accordion key={index} className="AccordionBox">
             <AccordionSummary
               className="AccordionTitleBox"
-              expandIcon={<ArrowDropDownOutlinedIcon  className="ArrowAccord"/>}
+              expandIcon={<ArrowDropDownOutlinedIcon className="ArrowAccord" />}
             >
               <Typography variant="h5" className="AccordionTitleInfo">
                 Design {parseInt(index) + 1}
@@ -98,116 +102,113 @@ const DesignRequestStep3 = () => {
                 {design.productList.map((product, idx) => (
                   <React.Fragment key={idx}>
                     <Box className="RequestBox RequestBoxSecond">
-                  <InsertPhotoOutlinedIcon color="primary" className="FilesIcon" />
-                  <Box>
-                  <Typography
-                        variant="body2"
-                        component="div"
-                        className="InfoLabel"
-                      >
-                        Uploaded Files
-                  </Typography>
-                  <Box>
-                    {design.uploadedFiles.map((file, fileIndex) => (
-                      <Box key={fileIndex}>
+                      <InsertPhotoOutlinedIcon
+                        color="primary"
+                        className="FilesIcon"
+                      />
+                      <Box>
                         <Typography
-                        variant="body1"
-                        component="div"
+                          variant="body2"
+                          component="div"
+                          className="InfoLabel"
                         >
-                          {file}
-                      </Typography>
-                  </Box>
-                ))}
-                    </Box>
-                    </Box>
+                          Uploaded Files
+                        </Typography>
+                        <Box>
+                          {design.uploadedFiles.map((file, fileIndex) => (
+                            <Box key={fileIndex}>
+                              <Typography variant="body1" component="div">
+                                {file}
+                              </Typography>
+                            </Box>
+                          ))}
+                        </Box>
+                      </Box>
                     </Box>
                     <Box className="RequestViewSection">
-<Box className="RequestViewContent">
-                      <Typography
-                        variant="body2"
-                        component="div"
-                        className="InfoLabel"
-                      >
-                        Brand
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        className="InfoData"
-                      >
-                        {product.brand}
-                      </Typography>
+                      <Box className="RequestViewContent">
+                        <Typography
+                          variant="body2"
+                          component="div"
+                          className="InfoLabel"
+                        >
+                          Brand
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          className="InfoData"
+                        >
+                          {product.brand}
+                        </Typography>
+                      </Box>
+                      <Box className="RequestViewContent">
+                        <Typography
+                          variant="body2"
+                          component="div"
+                          className="InfoLabel"
+                        >
+                          Style
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          className="InfoData"
+                        >
+                          {product.style}
+                        </Typography>
+                      </Box>
+                      <Box className="RequestViewContent">
+                        <Typography
+                          variant="body2"
+                          component="div"
+                          className="InfoLabel"
+                        >
+                          Color
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          className="InfoData"
+                        >
+                          {product.color}
+                        </Typography>
+                      </Box>
+                      <Box className="RequestViewContent">
+                        <Typography
+                          variant="body2"
+                          component="div"
+                          className="InfoLabel"
+                        >
+                          Installation
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          component="div"
+                          className="InfoData"
+                        >
+                          {product.installation}
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Box className="RequestViewContent">
-                      <Typography
-                        variant="body2"
-                        component="div"
-                        className="InfoLabel"
-                      >
-                        Style
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        className="InfoData"
-                      >
-                        {product.style}
-                      </Typography>
-                    </Box>
-                    <Box className="RequestViewContent">
-                      <Typography
-                        variant="body2"
-                        component="div"
-                        className="InfoLabel"
-                      >
-                        Color
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        className="InfoData"
-                      >
-                        {product.color}
-                      </Typography>
-                    </Box>
-                    <Box className="RequestViewContent">
-                      <Typography
-                        variant="body2"
-                        component="div"
-                        className="InfoLabel"
-                      >
-                        Installation
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        className="InfoData"
-                      >
-                        {product.installation}
-                      </Typography>
-                    </Box>
-                    </Box>
-                    
                   </React.Fragment>
                 ))}
                 <Box className="RequestViewContent">
                   <Typography
-                        variant="body2"
-                        component="div"
-                        className="InfoLabel"
-                      >
-                        Rendering Notes
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        component="div"
-                        className="InfoData"
-                      >
-                        {design.notes || "N/A"}
-                      </Typography>
+                    variant="body2"
+                    component="div"
+                    className="InfoLabel"
+                  >
+                    Rendering Notes
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    component="div"
+                    className="InfoData"
+                  >
+                    {design.notes || "N/A"}
+                  </Typography>
                 </Box>
-                
-                
               </Box>
             </AccordionDetails>
           </Accordion>
@@ -217,7 +218,12 @@ const DesignRequestStep3 = () => {
         <Button type="button" variant="contained" color="primary">
           Back
         </Button>
-        <Button type="button" variant="contained" color="primary" onClick={handleClick}>
+        <Button
+          type="button"
+          variant="contained"
+          color="primary"
+          onClick={handleClick}
+        >
           Submit Request
         </Button>
       </Box>

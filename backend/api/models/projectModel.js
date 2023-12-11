@@ -1,8 +1,6 @@
 import { DataTypes } from "sequelize";
 import db from "../../connection/sequelizePostgres.js";
 
-import User from "./userModel.js"; // Import the User model for association
-
 const Project = db.define("Projects", {
   id: {
     type: DataTypes.INTEGER,
@@ -29,10 +27,11 @@ const Project = db.define("Projects", {
   project_actual_cost: {
     type: DataTypes.INTEGER,
   },
-  request_number: {
+  /*request_number: {
     type: DataTypes.STRING,
     unique: true,
   },
+  */
   brand: {
     type: DataTypes.STRING,
   },
@@ -47,10 +46,14 @@ const Project = db.define("Projects", {
   },
   account_manager_id: {
     type: DataTypes.UUID,
+    references: {
+      model: "Users", // Table name as it is in the database
+      key: "user_uuid",
+    },
     // Foreign key referencing the User table
   },
   createdBy: {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
   },
   modifiedBy: {
     type: DataTypes.STRING,
@@ -62,21 +65,5 @@ const Project = db.define("Projects", {
     type: DataTypes.DATE,
   },
 });
-
-// Define foreign key relationship
-Project.belongsTo(User, {
-  foreignKey: "account_manager_id",
-  targetKey: "user_uuid",
-  as: "accountManager",
-});
-
-// Sync the model with the database
-Project.sync({ alter: true })
-  .then(() => {
-    console.log("Project table synchronized");
-  })
-  .catch((error) => {
-    console.log("Error in synchronizing Project table:", error);
-  });
 
 export default Project;

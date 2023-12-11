@@ -2,7 +2,16 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import sequelize from "./connection/sequelizePostgres.js";
-import "./api/models/index.js";
+//import "./api/models/index.js";
+// WILL MODULARIZE LATER
+import User from "./api/models/userModel.js";
+import Request from "./api/models/requestModel.js";
+import Project from "./api/models/projectModel.js";
+import RequestDesignDetail from "./api/models/requestDesignDetailModel.js";
+import "./api/models/setupAssociations.js";
+
+// Rest of your code...
+
 import routes from "./api/routes/index.js";
 import session from "express-session";
 import dotenv from "dotenv";
@@ -48,13 +57,41 @@ app.get("/test", (req, res) => {
     message: "Done",
   });
 });
+/*
 sequelize
   .authenticate()
   .then(() => console.log("Connnected to DB successfully!!"))
   .catch((error) => console.log("Error has occurred:", error));
+*/
 
 routes(app);
 
-app.listen(process.env.APP_PORT, () => {
-  console.log("Listening on port:", process.env.APP_PORT);
-});
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connected to DB successfully!!");
+    // Synchronize the models here
+    return User.sync({ alter: true });
+  })
+  .then(() => {
+    console.log("User table synchronized");
+    return Project.sync({ alter: true });
+  })
+  .then(() => {
+    console.log("Project table synchronized");
+    return Request.sync({ alter: true });
+  })
+  .then(() => {
+    console.log("Request table synchronized");
+    return RequestDesignDetail.sync({ alter: true });
+  })
+  .then(() => {
+    console.log("RequestDesignDetail table synchronized");
+    app.listen(process.env.APP_PORT, () => {
+      console.log("Listening on port:", process.env.APP_PORT);
+    });
+  })
+  .catch((error) => {
+    console.log("Error has occurred:", error);
+    // Handle the error or decide if you want to continue starting the server
+  });

@@ -27,14 +27,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import "./AdminLandingScreen.css";
+import DesignRequestsPage from "../DesignRequestsPage";
 
 const Counter = ({ label, value, onIncrement, onDecrement }) => {
   return (
     <Box pl={3} sx={{ display: "flex" }}>
-      <Box mt={.5}>
-        <Typography variant="body1">
-          {label}
-        </Typography>
+      <Box mt={0.5}>
+        <Typography variant="body1">{label}</Typography>
       </Box>
       <Box display="flex" ml={2} flexDirection="column">
         <Box display="flex" alignItems="center">
@@ -42,18 +41,14 @@ const Counter = ({ label, value, onIncrement, onDecrement }) => {
             <RemoveIcon />
           </Button>
           <Box sx={{ mx: 2, textAlign: "center" }}>
-            <Typography variant="body1">
-              {value}
-            </Typography>
+            <Typography variant="body1">{value}</Typography>
           </Box>
           <Button onClick={onIncrement} variant="outlined" color="primary">
             <AddIcon />
           </Button>
         </Box>
         <Box display="flex" justifyContent="center" mt={1}>
-          <Typography variant="body1">
-            Business Days
-          </Typography>
+          <Typography variant="body1">Business Days</Typography>
         </Box>
       </Box>
     </Box>
@@ -79,12 +74,7 @@ const MainComponent = () => {
   return (
     <>
       <AdminNavBar activeTab={activeTab} onChangeTab={handleTabChange} />
-      <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="flex-end"
-        m={2}
-      >
+      <Stack direction="row" spacing={2} justifyContent="flex-end" m={2}>
         <Counter
           className="CounterText"
           label="Lead Time for New Requests"
@@ -100,6 +90,7 @@ const MainComponent = () => {
         />
       </Stack>
       {activeTab === 0 && <AdminPage />}
+      {activeTab === 1 && <DesignRequestsPage />}
       {/* Render other components based on the selected tab */}
     </>
   );

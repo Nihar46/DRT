@@ -81,12 +81,4 @@ const User = db.define("Users", {
   },
 });
 
-User.sync({ alter: true })
-  .then(() => {
-    console.log("User table synchronized");
-  })
-  .catch((error) => {
-    console.log("Error in synchronizing User table:", error);
-  });
-
 export default User;

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Typography, Box, Paper } from "@mui/material";
 import { useStepContext } from "../../../context/StepFormContext"; // Adjust the import path accordingly
 import RequestStep2Accordion from "../../../components/RequestStep2Accordion";
+import { format } from "date-fns";
 const DesignRequestStep2 = () => {
   const { state, dispatch } = useStepContext();
   console.log("STEP 2:", state);
@@ -27,6 +28,7 @@ const DesignRequestStep2 = () => {
             </Typography>
             <Typography variant="body1" component="div" className="InfoData">
               {state.projectInformation.completionDate}
+              {/*format(state.projectInformation.completionDate, "MM/dd/yyyy")*/}
             </Typography>
           </Box>
           <Box className="RequestInfoContent">

@@ -39,7 +39,13 @@ const useAccountManager = () => {
     }
   };
 
-  const submitRequest = async (requestDetails) => {};
+  const submitRequest = async (projectInformation, designDetails) => {
+    try {
+      console.log("first:", projectInformation);
+      console.log("second:", designDetails);
+      return;
+    } catch (error) {}
+  };
 
   return {
     submitRequest,
