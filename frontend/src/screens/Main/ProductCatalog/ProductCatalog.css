@@ -47,45 +47,11 @@
   margin-bottom: 10px;
 } */
 
-.accordion-title {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  text-align: left;
-  background-color: transparent;
-  cursor: pointer;
-  margin: 0;
-  border-top: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 0;
-}
 
-.accordion-title:hover {
-  border: none;
-  border-top: 1px solid #ddd;
-}
-
-.accordion-content {
-  padding: 10px;
-  /* background-color: #eee; */
-}
-
-.accordion-arrow {
-  font-size: 10 px;
-  /* Adjust the size of the arrow as needed */
-}
 
 .filter-option {
   display: block;
   margin-bottom: 5px;
-}
-
-.main-content {
-  /* flex-grow: 1; */
-  flex: 8;
-  padding: 20px;
 }
 
 .search-bar {
@@ -148,7 +114,7 @@
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  min-height: 385px;
+  height: 380px;
   object-fit: cover;
 }
 

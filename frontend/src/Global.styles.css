@@ -472,6 +472,53 @@ textarea:focus-visible {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.accordion-title {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  text-align: left;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0;
+}
+
+.accordion-title:hover {
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.accordion-content {
+  padding: 10px;
+  /* background-color: #eee; */
+}
+
+.accordion-arrow {
+  font-size: 10 px;
+  /* Adjust the size of the arrow as needed */
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.main-content-product {
+  /* flex-grow: 1; */
+  display: flex;
+  flex: 8;
+  padding: 20px;
+  flex-direction: row;
+}
+
+
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   
 }

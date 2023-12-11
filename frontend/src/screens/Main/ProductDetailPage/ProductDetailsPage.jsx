@@ -28,7 +28,7 @@ const AccordionSection = ({ title, children }) => {
       <Box>
         {isOpen && <Typography variant="h6" className="accordion-content">{children}</Typography>}
       </Box>
-      <hr></hr>
+      {/* <hr></hr> */}
     </div>
   );
 };
@@ -73,7 +73,7 @@ const ProductDetailsPage = () => {
           Back
         </Button>
       </div>
-      <div className="main-content">
+      <div className="main-content-product">
         <div className="image-section">
           <Button startIcon={<CachedIcon />} endIcon={<OpenInNewIcon/>} className="view-visualizer-button">VIEW IN VISUALIZER</Button>
           <Button className="download-button"><GetAppRoundedIcon /></Button>
@@ -119,7 +119,7 @@ const ProductDetailsPage = () => {
 
           <div className="formats-sizes">
             <Typography variant="h6">Fomats and sizes</Typography>
-            <Box className="formats">
+            <Box className="formats" display="flex">
               {product.formats.map((format, index) => (
                 
                 <Box key={index} mr={3}>
