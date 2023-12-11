@@ -779,16 +779,22 @@ function ProductCatalog() {
               <Typography variant="h6">
                 Showing {activeProducts.length} of {tabsData[activeTab].count}
               </Typography>
-              {visibleCounts[activeTab] < tabsData[activeTab].count && (
-                <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
-                  SHOW MORE
-                </Button>
-              )}
-              {visibleCounts[activeTab] > productsPerPage && (
-                <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
-                  SHOW LESS
-                </Button>
-              )}
+              <Box display="flex" mt={1}>
+                {visibleCounts[activeTab] < tabsData[activeTab].count && (
+                  <Box mx={1}>
+                    <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
+                      SHOW MORE
+                    </Button>
+                  </Box>
+                )}
+                {visibleCounts[activeTab] > productsPerPage && (
+                  <Box mx={1}>
+                    <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
+                      SHOW LESS
+                    </Button>
+                  </Box>
+                )}
+              </Box>
             </Box>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
@@ -820,16 +826,22 @@ function ProductCatalog() {
               <Typography variant="h6">
                 Showing {activeProducts.length} of {tabsData[activeTab].count}
               </Typography>
-              {visibleCounts[activeTab] < tabsData[activeTab].count && (
-                <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
-                  SHOW MORE
-                </Button>
-              )}
-              {visibleCounts[activeTab] > productsPerPage && (
-                <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
-                  SHOW LESS
-                </Button>
-              )}
+              <Box display="flex" mt={1}>
+                {visibleCounts[activeTab] < tabsData[activeTab].count && (
+                  <Box display="flex" mx={1}>
+                    <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
+                      SHOW MORE
+                    </Button>
+                  </Box>
+                )}
+                {visibleCounts[activeTab] > productsPerPage && (
+                  <Box display="flex" mx={1}>
+                    <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
+                      SHOW LESS
+                    </Button>
+                  </Box>
+                )}
+              </Box>
             </Box>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
@@ -857,20 +869,26 @@ function ProductCatalog() {
               nav_func={nav_to_details_page}
             />
 
-            <Box className="pagination" mt={5} sx={{ borderTop: 1, borderColor: 'grey.500' }}>
+            <Box className="pagination" mt={5} sx={{ borderTop: 1, borderColor: 'grey.500'}}>
               <Typography variant="h6">
                 Showing {activeProducts.length} of {tabsData[activeTab].count}
               </Typography>
-              {visibleCounts[activeTab] < tabsData[activeTab].count && (
-                <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
-                  SHOW MORE
-                </Button>
-              )}
-              {visibleCounts[activeTab] > productsPerPage && (
-                <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
-                  SHOW LESS
-                </Button>
-              )}
+              <Box display="flex" mt={1}>
+                {visibleCounts[activeTab] < tabsData[activeTab].count && (
+                  <Box display="flex" mx={1}>
+                    <Button variant="contained" onClick={showMoreProducts} /* className="show-more-button" */>
+                      SHOW MORE
+                    </Button>
+                  </Box>
+                )}
+                {visibleCounts[activeTab] > productsPerPage && (
+                  <Box display="flex" mx={1}>
+                    <Button variant="contained" onClick={showLessProducts} /* className="show-less-button" */>
+                      SHOW LESS
+                    </Button>
+                  </Box>
+                )}
+              </Box>
             </Box>
             </CustomTabPanel>
 
