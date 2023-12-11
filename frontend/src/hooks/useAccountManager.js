@@ -43,8 +43,30 @@ const useAccountManager = () => {
     try {
       console.log("first:", projectInformation);
       console.log("second:", designDetails);
-      return;
-    } catch (error) {}
+      const response = await axios.post(
+        "/account-manager-sales-rep/create-request",
+        {
+          projectInformation,
+          designDetails,
+        },
+        { withCredentials: true, credentials: "include" }
+      );
+      console.log("RESPONSE:", response);
+      if (response.data.success) {
+        toast.success(response.data.message, {
+          autoClose: 5000,
+          position: "top-center",
+        });
+        navigate("/account-manager-dashboard");
+      }
+      console.log("LoginResponse:", response.data);
+    } catch (error) {
+      console.log("Error while submitting request:", error);
+      toast.error("Request creation failed!", {
+        autoClose: 2000,
+        position: "top-center",
+      });
+    }
   };
 
   return {

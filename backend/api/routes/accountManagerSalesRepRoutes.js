@@ -5,5 +5,5 @@ import { submitRequest } from "../controllers/accountManagerSalesRepController.j
 const router = express.Router();
 
 //routes
-router.post("/submit-request", submitRequest);
+router.post("/create-request", submitRequest);
 export default router;
