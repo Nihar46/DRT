@@ -9,6 +9,10 @@ const AdminLandingScreen = lazy(() =>
   import("../screens/Main/AdminFlow/AdminLandingScreen")
 );
 
+const RequestStatusPage = lazy(() =>
+  import("../screens/Main/AdminFlow/RequestStatusPage")
+);
+
 const PrivateRoutes = ({ as: Component, ...props }) => {
   const navigate = useNavigate();
   const user = Cookies.get("user");
@@ -26,6 +30,10 @@ const appNav = [
   {
     path: "/admin-landing-screen",
     element: <AdminLandingScreen />,
+  },
+  {
+    path: "/temp-request-status",
+    element: <RequestStatusPage />,
   },
 ];
 

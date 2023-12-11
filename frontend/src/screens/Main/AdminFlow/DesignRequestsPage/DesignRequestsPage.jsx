@@ -12,6 +12,7 @@ import {
   Paper,
   Checkbox,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const dummyProjects = [
   {
@@ -79,6 +80,7 @@ const dummyProjects = [
 
 const DesignRequestsPage = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setActiveTab(newValue);
@@ -112,7 +114,11 @@ const DesignRequestsPage = () => {
         </TableHead>
         <TableBody>
           {projects.map((project) => (
-            <TableRow key={project.id}>
+            <TableRow
+              key={project.id}
+              onClick={() => navigate("/temp-request-status")}
+              sx={{ cursor: "pointer" }}
+            >
               <TableCell>{project.name}</TableCell>
               <TableCell>{project.accountManager}</TableCell>
               <TableCell>{project.country}</TableCell>
