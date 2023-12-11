@@ -450,6 +450,28 @@ textarea:focus-visible {
   position: relative;
 }
 .MaterialTableBox .MuiTableRow-root { cursor: pointer;}
+.StatusSteps {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.StatusSteps .MuiStepLabel-root {
+  display: grid;
+  justify-items: center;
+  max-width: 83px;
+}
+.AccordBox {
+  margin-bottom: 40px;
+}
+.StatusSteps.MuiStepLabel-iconContainer {
+  justify-content: center;
+}
+.GreySection {
+  background-color: #FAFAFA;
+}
+.SideSection {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   
 }
