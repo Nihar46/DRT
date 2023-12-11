@@ -11,38 +11,47 @@
 .main-content {
   display: flex;
   justify-content: space-between;
+  padding: 20px;
 }
 
 .image-section {
-  width: 50%;
+  width: 80%;
   position: relative;
 }
 
 .view-visualizer-button {
   position: absolute;
+  margin: 16px 0 0 16px;
+  background-color: #fff;
 }
 
 .download-button {
+  background-color: #fff;
+  min-width: auto;
   position: absolute;
-  margin-right: 20px;
-  margin-top: 20px;
+  margin: 16px 16px 0 0;
+  right: 0;
 }
 
 .product-main-image {
   width: 100%;
   border-radius: 15px;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   /* Adjust as needed to fit your layout */
 }
 
 .details-section {
-  width: 50%;
-  padding-left: 70px; /* Adjust as needed */
+  width: 20%;
+  padding-left: 50px; /* Adjust as needed */
 }
 
 .product-title {
   /* Style your product title */
   font-size: 20px;
+}
+
+.colors svg {
+  color: #003057;
 }
 
 .color-swatches {
@@ -55,16 +64,24 @@
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
   grid-template-rows: repeat(2, 1fr); /* 2 rows */
   gap: 10px;
-  margin-bottom: 10px;
-  width: 50%; /* Adjust based on your design */
+  /* margin-bottom: 10px; */
 }
 
 .swatch {
-  width: 50px; /* Adjust size as needed */
-  height: 50px; /* Adjust size as needed */
-  margin-right: 10px;
-  border: 1px solid #ccc;
+  width: 60px; /* Adjust size as needed */
+  height: 60px; /* Adjust size as needed */
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 5px;
   /*background-color: blue; /* Add border for swatches */
+}
+.swatch:hover {
+  border: 2px solid #003057;
+}
+
+.formats .MuiTypography-h6 {
+  color: #003057;
+  text-decoration: underline;
 }
 
 .details-container {
@@ -85,6 +102,14 @@
 .content {
   flex: 1;
   margin-right: 20px;
+}
+
+.content ul {
+  padding-left: 15px;
+}
+.content ul a {
+  color: #003057;
+  text-decoration: underline;
 }
 
 .sidebar {

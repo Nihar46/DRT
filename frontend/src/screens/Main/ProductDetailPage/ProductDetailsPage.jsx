@@ -8,21 +8,27 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import GetAppRoundedIcon from "@mui/icons-material/GetAppRounded";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Button } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CachedIcon from '@mui/icons-material/Cached';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import AddIcon from '@mui/icons-material/Add';
+import { Box, Button, Typography } from "@mui/material";
 
 const AccordionSection = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="accordion-section">
-      <h3 className="accordion-title" onClick={() => setIsOpen(!isOpen)}>
-        {title}{" "}
+      <Box display="flex" justifyContent="space-between" alignItems="center" className="accordion-title" onClick={() => setIsOpen(!isOpen)}>
+        <Typography variant="h4">{title}{" "}</Typography>
         <span className="accordion-arrow">
           {isOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         </span>
-      </h3>
+      </Box>
+      <Box>
+        {isOpen && <Typography variant="h6" className="accordion-content">{children}</Typography>}
+      </Box>
       <hr></hr>
-      {isOpen && <div className="accordion-content">{children}</div>}
     </div>
   );
 };
@@ -53,72 +59,76 @@ const ProductDetailsPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="product-details-container">
-      {/*<Header />*/}
+    <Box>
+    {/*<Header />*/}
+    <Box className="product-details-container" p={2}>
       <div className="back-button">
         <Button
           type="button"
           onClick={() => navigate("/product-catalog")}
-          variant="contained"
+          variant=""
           color="primary"
+          startIcon={<ArrowBackIcon />}
         >
           Back
         </Button>
       </div>
       <div className="main-content">
         <div className="image-section">
-          <button className="view-visualizer-button">VIEW IN VISUALIZER</button>
-          <GetAppRoundedIcon className="download-button" />
+          <Button startIcon={<CachedIcon />} endIcon={<OpenInNewIcon/>} className="view-visualizer-button">VIEW IN VISUALIZER</Button>
+          <Button className="download-button"><GetAppRoundedIcon /></Button>
+          {/* <GetAppRoundedIcon className="download-button" /> */}
           <img
             src={product.images[0]}
             alt={product.name}
             className="product-main-image"
           />
 
-          <div>
-            <p>Products | Carpet | Powerbond - Resilient/Carpet Hybrid </p>
-
+          <Box mt={2}>
+            <Typography variant="h6">Products | Carpet | Powerbond - Resilient/Carpet Hybrid </Typography>
             <hr></hr>
-          </div>
+          </Box>
         </div>
         <div className="details-section">
-          <h1 className="product-title">{product.name}</h1>
-          <div className="colors">
-            <span>Colors ({product.swatches.length})</span>
-            {/*<AddBoxIcon  />*/}
-          </div>
-          <div className="swatches">
-            {product.swatches.map((swatch) => (
-              <div
-                key={swatch.id}
-                className="swatch"
-                style={{ backgroundColor: `${swatch.code}` }}
-              >
-                {/* <img src={swatch.image} alt={swatch.label} /> */}
+          <Typography className="product-title" variant="h4">{product.name}</Typography>
+          <Box className="colors" display="flex" justifyContent="space-between" my={2}>
+            <Typography variant="h6">Colors ({product.swatches.length})</Typography>
+            <AddBoxIcon  />
+          </Box>
+          <Box display="flex" justifyContent="flex-end" flexDirection="column" alignItems="flex-end" mb={3}>
+            <Box>
+              <div className="swatches">
+                {product.swatches.map((swatch) => (
+                  <div
+                    key={swatch.id}
+                    className="swatch"
+                    style={{ backgroundColor: `${swatch.code}` }}
+                  >
+                    {/* <img src={swatch.image} alt={swatch.label} /> */}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+              <div className="product-description">
+                <p>{product.description}</p>
+              </div>
+              <Button startIcon={<AddIcon/>} variant="contained" color="primary" fullWidth>
+                Add
+              </Button>
+            </Box>
+          </Box>
 
-          <div className="product-description">
-            <p>{product.description}</p>
-          </div>
-          <div>
-            <AddBoxIcon />
-            <Button variant="contained" color="primary">
-              Add Product
-            </Button>
-          </div>
           <div className="formats-sizes">
-            <span>Fomats and sizes</span>
-            <div className="formats">
+            <Typography variant="h6">Fomats and sizes</Typography>
+            <Box className="formats">
               {product.formats.map((format, index) => (
-                <label key={index}>
+                
+                <Box key={index} mr={3}>
                   {/* <input type="radio" name="format" value={format.type} disabled={!format.available} />
                                     {format.type} ({format.available ? '1' : '0'}) */}
-                  <span>{format.type}</span>
-                </label>
+                  <Typography variant="h6">{format.type}</Typography>
+                </Box>
               ))}
-            </div>
+            </Box>
           </div>
         </div>
       </div>
@@ -126,10 +136,10 @@ const ProductDetailsPage = () => {
       <div className="details-container">
         <div className="main-details">
           <div className="header">
-            <h1>Abrasive Action II 02578 WINTER GRAY 19103</h1>
+            <Typography variant="h1">Abrasive Action II 02578 WINTER GRAY 19103</Typography>
           </div>
           <div className="content">
-            <p>
+            <Typography variant="h6">
               Properly designed entryway systems can prevent 80% of outside soil
               from being tracked inside. Abrasive Action is a versatile
               Powerbond and modular product that is ideal for use as an entryway
@@ -137,25 +147,29 @@ const ProductDetailsPage = () => {
               complete wall-to-wall moisture barrier. This system provides a
               sound, cost-effective solution for long-term appearance retention
               at entryways and other high traffic areas.
-            </p>
-            <p>
-              Discover this product's environmental attributes and its
-              contribution to LEED at ecomedes.
-            </p>
-            <h2>KEY FEATURES</h2>
-            <ul>
-              <li>Available in 7 colors</li>
-              <li>
-                Available in Modular Carpet Tile (24" x 24") and Powerbond
-                (Roll)
-              </li>
-              <li>TTX SD Solution Dyed</li>
-              <li>Permanent stain resistance</li>
-              <li>
-                Tarket Footprint - Powerbond® / Tarket Footprint - Ethos®
-                Modular
-              </li>
-            </ul>
+            </Typography>
+            <Box mt={2}>
+              <Typography variant="h6">
+                Discover this product's environmental attributes and its
+                contribution to LEED at ecomedes.
+              </Typography>
+            </Box>
+            <Box mt={4}>
+              <Typography variant="h4">KEY FEATURES</Typography>
+              <ul>
+                <li><Typography variant="h6">Available in 7 colors</Typography></li>
+                <li>
+                <Typography variant="h6">Available in Modular Carpet Tile (24" x 24") and Powerbond
+                  (Roll)</Typography>
+                </li>
+                <li><Typography variant="h6">TTX SD Solution Dyed</Typography></li>
+                <li><Typography variant="h6">Permanent stain resistance</Typography></li>
+                <li>
+                <Typography variant="h6"><a>Tarket Footprint - Powerbond®</a> / <a>Tarket Footprint - Ethos®
+                  Modular</a></Typography>
+                </li>
+              </ul>
+            </Box>
           </div>
         </div>
         <div className="sidebar">
@@ -175,7 +189,8 @@ const ProductDetailsPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Box>
+    </Box>
   );
 };
 
