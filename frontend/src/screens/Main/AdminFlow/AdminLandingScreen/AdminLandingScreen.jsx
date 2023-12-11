@@ -74,24 +74,26 @@ const MainComponent = () => {
   return (
     <>
       <AdminNavBar activeTab={activeTab} onChangeTab={handleTabChange} />
-      <Stack direction="row" spacing={2} justifyContent="flex-end" m={2}>
-        <Counter
-          className="CounterText"
-          label="Lead Time for New Requests"
-          value={leadTime}
-          onIncrement={incrementLeadTime}
-          onDecrement={decrementLeadTime}
-        />
-        <Counter
-          label="Automatically Close Projects"
-          value={closeProjects}
-          onIncrement={incrementCloseProjects}
-          onDecrement={decrementCloseProjects}
-        />
-      </Stack>
-      {activeTab === 0 && <AdminPage />}
-      {activeTab === 1 && <DesignRequestsPage />}
-      {/* Render other components based on the selected tab */}
+      <Box className="PageSpacing SideSpacing">
+        <Stack direction="row" spacing={2} justifyContent="flex-end" m={2}>
+          <Counter
+            className="CounterText"
+            label="Lead Time for New Requests"
+            value={leadTime}
+            onIncrement={incrementLeadTime}
+            onDecrement={decrementLeadTime}
+          />
+          <Counter
+            label="Automatically Close Projects"
+            value={closeProjects}
+            onIncrement={incrementCloseProjects}
+            onDecrement={decrementCloseProjects}
+          />
+        </Stack>
+        {activeTab === 0 && <AdminPage />}
+        {activeTab === 1 && <DesignRequestsPage />}
+        {/* Render other components based on the selected tab */}
+      </Box>
     </>
   );
 };
