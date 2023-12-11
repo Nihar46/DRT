@@ -465,6 +465,27 @@ textarea:focus-visible {
 .StatusSteps.MuiStepLabel-iconContainer {
   justify-content: center;
 }
+.StatusSteps .MuiStepIcon-text {
+  display: none;
+}
+.StatusSteps .MuiStepper-root {
+  align-items: self-start;
+}
+.StatusSteps .MuiStepConnector-root {
+  margin-top: 6px;
+}
+.StatusSteps .MuiSvgIcon-root {
+  font-size: 12px;
+}
+.StatusSteps .MuiSvgIcon-root.Mui-active {
+  color: #2176B9
+}
+.StatusSteps .MuiStepLabel-label.Mui-active {
+  color: rgba(0, 0, 0, 0.60);
+}
+.StatusSteps .MuiStepLabel-labelContainer {
+  margin-top: 10px;
+}
 .GreySection {
   background-color: #FAFAFA;
 }
@@ -516,6 +537,10 @@ textarea:focus-visible {
   flex: 8;
   padding: 20px;
   flex-direction: row;
+}
+.HistoryIcon  {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.56);
 }
 
 

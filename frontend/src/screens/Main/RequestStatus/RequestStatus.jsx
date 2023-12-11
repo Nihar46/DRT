@@ -12,7 +12,10 @@ import {
   AccordionSummary,
   AccordionDetails,
   Container,
+  Divider,
+  TextareaAutosize,
 } from "@mui/material";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Header from "../../../components/Header";
 const steps = [
   "Pending",
@@ -231,10 +234,76 @@ const RequestStatus = () => {
           <Grid item xs={12} md={4} className="RequestStatusRightCol">
             <Box className="GreySection SideSection">
               <Typography variant="h3" component="div" className="InfoHeading">
+                History
+              </Typography>
+              <Divider />
+              <Box mt={2}>
+                <Box display="flex" alignItems="center">
+                  <Box sx={{ width: '45%' }}>
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      className="InfoLabel"
+                    >
+                      11/27/2023 11:12am
+                    </Typography>
+                  </Box>
+                  <Box px={2} display="flex" justifyContent="center" sx={{ width: '10%' }}>
+                    <AccessTimeIcon className="HistoryIcon" />
+                  </Box>
+                  <Box sx={{ width: '45%' }}>
+                    <Typography
+                      variant="body1"
+                      component="div"
+                      className="InfoData"
+                    >
+                      Request Submitted by Stella Garcia
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box display="flex" justifyContent="center">
+                  <Divider style={{height: '35px'}} orientation="vertical" variant="middle" flexItem />
+                </Box>
+                <Box display="flex" alignItems="center">
+                  <Box sx={{ width: '45%' }}>
+                    <Typography
+                      variant="body2"
+                      component="div"
+                      className="InfoLabel"
+                    >
+                      11/29/2023 2:38pm
+                    </Typography>
+                  </Box>
+                  <Box px={2} display="flex" justifyContent="center" sx={{ width: '10%' }}>
+                    <AccessTimeIcon className="HistoryIcon" />
+                  </Box>
+                  <Box sx={{ width: '45%' }}>
+                    <Typography
+                      variant="body1"
+                      component="div"
+                      className="InfoData"
+                    >
+                      Request Reviewed by Brian Kent
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box className="GreySection SideSection">
+              <Typography variant="h3" component="div" className="InfoHeading">
                 Comments
               </Typography>
-              
-
+              <Divider />
+              <Box style={{height: '300px'}}></Box>
+            </Box>
+            <Box className="GreySection SideSection">
+              <TextareaAutosize
+                minRows={3}
+                placeholder="Comments"
+              />
+              <Box mt={2} display="flex" justifyContent="flex-end">
+                <Button variant="contained">COMMENT</Button>
+              </Box>
             </Box>
           </Grid>
         </Grid>
