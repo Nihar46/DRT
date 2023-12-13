@@ -3,6 +3,7 @@ import RequestStatusBar from "../../../../components/RequestStatusBar";
 import AdminNavBar from "../../../../components/AdminNavBar";
 import RequestStatusProjectInformation from "../RequestStatusProjectInformation";
 import OriginalRequest from "../OriginalRequest";
+import { Box } from "@mui/material";
 const RequestStatusPage = () => {
   const [activeTab, setActiveTab] = useState(0); // '0' corresponds to the "Admin Page" tab
 
@@ -12,9 +13,11 @@ const RequestStatusPage = () => {
   return (
     <>
       {/*<AdminNavBar activeTab={activeTab} onChangeTab={handleTabChange} />*/}
-      <RequestStatusBar status={2} />
-      <RequestStatusProjectInformation />
-      <OriginalRequest />
+      <Box className="PageSpacing SideSpacing">
+        <RequestStatusBar status={2} />
+        <RequestStatusProjectInformation />
+        <OriginalRequest />
+      </Box>
     </>
   );
 };

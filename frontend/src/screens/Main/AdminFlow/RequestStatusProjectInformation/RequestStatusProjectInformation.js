@@ -101,10 +101,10 @@ const historyItems = [
 const RightSideComponents = () => {
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-        {/* ProjectInformation component should go here */}
-      </Grid>
-      <Grid item xs={12} md={6}>
+      {/* <Grid item xs={12} md={6}> */}
+      {/* ProjectInformation component should go here */}
+      {/* </Grid> */}
+      <Grid item xs={12}>
         <Card variant="outlined" sx={{ mb: 2 }}>
           <CardContent>
             <Autocomplete
@@ -142,28 +142,42 @@ const RightSideComponents = () => {
 const RequestStatusProjectInformation = () => {
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
+      <Box sx={{ display: "flex", py: 3, justifyContent: "flex-end" }}>
         {/* Action Buttons */}
-        <Button startIcon={<Save />} variant="contained">
-          Save
-        </Button>
-        <Button startIcon={<Delete />} color="error" variant="contained">
-          Delete
-        </Button>
-        <Button variant="contained">Set to external review</Button>
-        <Button variant="contained">complete request</Button>
-        <Button variant="contained">Put on hold</Button>
-        <Button variant="contained">Mark as Pending</Button>
-        <Button variant="contained">Print</Button>
+        <Box>
+          <Button startIcon={<Save />} variant="contained">
+            Save
+          </Button>
+        </Box>
+        <Box ml={2}>
+          <Button startIcon={<Delete />} color="error" variant="contained">
+            Delete
+          </Button>
+        </Box>
+        <Box ml={2}>
+          <Button variant="contained">Set to external review</Button>
+        </Box>
+        <Box ml={2}>
+          <Button variant="contained">complete request</Button>
+        </Box>
+        <Box ml={2}>
+          <Button variant="contained">Put on hold</Button>
+        </Box>
+        <Box ml={2}>
+          <Button variant="contained">Mark as Pending</Button>
+        </Box>
+        <Box ml={2}>
+          <Button variant="contained">Print</Button>
+        </Box>
         {/* More Buttons... */}
       </Box>
-      <Divider />
+      {/* <Divider /> */}
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={9}>
             <ProjectInformation />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={3}>
             <RightSideComponents />
           </Grid>
         </Grid>
