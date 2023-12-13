@@ -106,7 +106,7 @@
   text-decoration: underline;
 }
 
-.sidebar {
+.details-container .sidebar {
   width: 200px;
   flex: 4;
   /* Assuming each section is a collapsible accordion */
