@@ -290,13 +290,12 @@ const OriginalRequest = () => {
         <Grid item xs={12} md={3}>
           {/* Product Selection */}
 
-          {file && (
+          {/* {file && (
             <Stack direction="row" alignItems="center" spacing={1} mt={1}>
               <Typography variant="body2">{file.name}</Typography>
-              {/* Implement the delete functionality */}
               <Button color="error">Delete</Button>
             </Stack>
-          )}
+          )} */}
 
           {/* More components to be added here */}
         </Grid>
