@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Box,
   Button,
@@ -16,12 +16,46 @@ import {
   ListItemText,
   Card,
   CardContent,
+  Paper,
 } from "@mui/material";
+import { useDropzone } from "react-dropzone";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
 import ManualUploadSection from "../../../../components/ManualUploadSection";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const OriginalRequest = () => {
+  const [fileBlob, setFileBlob] = useState(null);
+  const onDrop = useCallback((acceptedFiles, fileRejections) => {
+    if (fileRejections.length) {
+      alert("Only PDF files are allowed!");
+    } else {
+      const uploadedFile = acceptedFiles[0];
+      setFile(uploadedFile);
+      setFileBlob(URL.createObjectURL(uploadedFile));
+    }
+  }, []);
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: {
+      "application/pdf": [".pdf"],
+    },
+    multiple: false,
+  });
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = fileBlob;
+    link.download = file.name; // Set the downloaded file name
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  const removeFile = () => {
+    URL.revokeObjectURL(fileBlob); // Clean up the object URL
+    setFile(null);
+    setFileBlob(null);
+  };
+
   const [designLink, setDesignLink] = useState("");
   const [completedFileLink, setCompletedFileLink] = useState("");
   const [expectedCompletionDate, setExpectedCompletionDate] = useState(
@@ -186,7 +220,68 @@ const OriginalRequest = () => {
                   </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                  <ManualUploadSection title="File Upload" />
+                  <Box>
+                    <Typography variant="h4">File Upload</Typography>
+                    <Paper
+                      {...getRootProps()}
+                      sx={{
+                        p: 2,
+                        mt: 1,
+                        mb: 2,
+                        border: "1px dashed grey",
+                        bgcolor: "#fafafa",
+                        textAlign: "center",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <input {...getInputProps()} />
+                      {file ? (
+                        <Typography>{file.name}</Typography>
+                      ) : (
+                        <Typography>
+                          Click here or drag file into this box to upload.
+                        </Typography>
+                      )}
+                    </Paper>
+                    <Button
+                      variant="contained"
+                      onClick={handleDownload}
+                      disabled={!file}
+                      sx={{ mb: 2 }}
+                    >
+                      Save PDF
+                    </Button>
+                    {file && (
+                      <Box
+                        border={1}
+                        p={1}
+                        borderRadius={1}
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          borderColor: "grey.500",
+                        }}
+                      >
+                        <Typography
+                          variant="body1"
+                          component={Link}
+                          href="#"
+                          download
+                        >
+                          {file.name}
+                        </Typography>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          startIcon={<DeleteIcon />}
+                          onClick={removeFile}
+                        >
+                          Remove
+                        </Button>
+                      </Box>
+                    )}
+                  </Box>
                 </Grid>
               </Grid>
             </CardContent>
