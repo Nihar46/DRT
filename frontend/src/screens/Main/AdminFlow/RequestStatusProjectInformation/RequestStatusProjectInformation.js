@@ -36,9 +36,11 @@ const ProjectInformation = () => {
   return (
     <Card variant="outlined" sx={{ mb: 2 }}>
       <CardContent>
-        <Typography variant="h6" gutterBottom>
-          Project Information
-        </Typography>
+        <Box mb={3}>
+          <Typography variant="h4" gutterBottom>
+            Project Information
+          </Typography>
+        </Box>
         <Grid container spacing={2}>
           {Object.entries(projectData).map(([key, value]) => (
             <Grid item xs={12} sm={6} md={4} key={key}>
@@ -142,7 +144,7 @@ const RightSideComponents = () => {
 const RequestStatusProjectInformation = () => {
   return (
     <Box>
-      <Box sx={{ display: "flex", py: 3, justifyContent: "flex-end" }}>
+      <Box sx={{ display: "flex", py: 3, justifyContent: "flex-start" }}>
         {/* Action Buttons */}
         <Box>
           <Button startIcon={<Save />} variant="contained">
