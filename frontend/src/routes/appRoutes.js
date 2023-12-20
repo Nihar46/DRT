@@ -45,8 +45,12 @@ const appNav = [
     path: "/product-details/:id",
     element: <ProductDetailsPage />,
   },
-  {
+  /*{
     path: "/account-manager-dashboard",
+    element: <AccountManagerDashboard />,
+  },*/
+  {
+    path: "/dashboard",
     element: <AccountManagerDashboard />,
   },
   {

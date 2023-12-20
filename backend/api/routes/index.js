@@ -122,6 +122,7 @@ const routes = (app) => {
       const tokenData = {
         id: userExists.id,
         email: userExists.email,
+        userType: userExists.user_type,
       };
 
       //create signed token
@@ -138,6 +139,8 @@ const routes = (app) => {
       return res.status(201).json({
         message: "Login successful!",
         success: true,
+        user: userExists.dataValues.user_uuid,
+        userType: userExists.dataValues.user_type,
       });
     } catch (error) {
       console.log("Login failed:", error);

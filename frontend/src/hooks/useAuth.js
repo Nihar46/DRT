@@ -23,12 +23,16 @@ const useAuth = () => {
         { withCredentials: true, credentials: "include" }
       );
       console.log("RESPONSE:", response);
+      localStorage.setItem("userId", response.data.user);
+      localStorage.setItem("userType", response.data.userType);
+
       if (response.data.success) {
         toast.success(response.data.message, {
           autoClose: 5000,
           position: "top-center",
         });
-        navigate("/account-manager-dashboard");
+        navigate("/dashboard", { replace: true });
+        window.location.reload();
       }
       console.log("LoginResponse:", response.data);
     } catch (error) {
@@ -115,6 +119,8 @@ const useAuth = () => {
       if (response.data.success === true) {
         Cookies.remove("token");
         Cookies.remove("user");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userType");
         dispatch({ type: "RESET_STATE" });
 
         toast.success("You have logged out!", {

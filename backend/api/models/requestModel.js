@@ -87,7 +87,15 @@ const Request = db.define(
       // Foreign key referencing the User table
     },
     request_status: {
-      type: DataTypes.ENUM("Pending", "InProgress", "Completed", "Cancelled"), // Adjust enum values based on your options
+      type: DataTypes.ENUM(
+        "Pending",
+        "In Progress",
+        "On Hold",
+        "Delivered",
+        "Revision Requested",
+        "Rivision in Progress",
+        "Revision Delivered"
+      ), // Adjust enum values based on your options
     },
     createdBy: {
       type: DataTypes.UUID,

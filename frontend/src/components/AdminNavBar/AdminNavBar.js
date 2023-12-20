@@ -12,14 +12,20 @@ import {
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import "./AdminNavBar.css";
+import useAuth from "../../hooks/useAuth";
 
 const AdminNavBar = ({ activeTab, onChangeTab }) => {
+  const { logout } = useAuth();
   const tabStyle = (isSelected) => ({
     fontWeight: isSelected ? "normal" : "normal",
     fontSize: isSelected ? "16px" : "16px",
     color: isSelected ? "#F1A12F" : "#fff",
     opacity: isSelected ? "1" : "1",
   });
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <AppBar position="static">
       <Toolbar>
@@ -81,6 +87,7 @@ const AdminNavBar = ({ activeTab, onChangeTab }) => {
                 variant="contained"
                 color="secondary"
                 startIcon={<LogoutIcon />}
+                onClick={handleLogout}
               >
                 Logout
               </Button>

@@ -35,6 +35,9 @@ const DesignRequestStep1 = () => {
 
   const [roomScenesFloorPlans, setRoomScenesFloorPlans] = useState(1);
 
+  const accName = "Nihar";
+  const accEmail = "nihar@gmail.com";
+
   const onSubmit = (data) => {
     console.log("ON SUBMIT CLICKED");
     console.log("DATA STEP 1:", data);
@@ -248,6 +251,39 @@ const DesignRequestStep1 = () => {
               <p style={{ color: "red" }}>{errors.completionDate.message}</p>
             )}
           </LocalizationProvider>
+          <TextField
+            label="Account Manager Name"
+            value={accName}
+            InputProps={{
+              readOnly: true, // This makes the TextField immutable
+            }}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+          />
+
+          <TextField
+            label="Account Manager Email"
+            value={accEmail}
+            InputProps={{
+              readOnly: true, // This makes the TextField immutable
+            }}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+          />
+
+          <TextField
+            label="Account Manager Phone"
+            type="tel"
+            inputProps={{
+              inputMode: "numeric", // This will bring up the numeric keypad on mobile devices
+              pattern: "[0-9]*", // This restricts input to numbers only
+            }}
+            variant="outlined"
+            margin="normal"
+            fullWidth
+          />
           {/*<TextField
             label="Requested completion date"
             type="date"

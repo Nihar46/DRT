@@ -19,14 +19,14 @@ import {
   ListItemSecondaryAction,
   TextareaAutosize,
 } from "@mui/material";
-import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
+import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDropzone } from "react-dropzone";
 import ProductSelection from "../ProductSelection";
 import { useStepContext } from "../../context/StepFormContext";
-import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
-
+import InsertPhotoOutlinedIcon from "@mui/icons-material/InsertPhotoOutlined";
+import DoYouRequire from "../DoYouRequire";
 
 const DesignAccordion = ({ index, onDesignChange }) => {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ const DesignAccordion = ({ index, onDesignChange }) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [products, setProducts] = useState([]);
   const [productList, setProductList] = useState([]);
+
   const { state, dispatch } = useStepContext();
 
   useEffect(() => {
@@ -117,6 +118,7 @@ const DesignAccordion = ({ index, onDesignChange }) => {
     const designData = {
       productList,
       uploadedFiles: uploadedFiles.map((file) => file.name),
+
       notes,
     };
     dispatch({ type: "SET_DESIGN_DETAILS", payload: { index, designData } });
@@ -145,17 +147,18 @@ const DesignAccordion = ({ index, onDesignChange }) => {
             <input {...getInputProps()} />
             <Box>
               <UploadFileIcon className="IconColor" />
-            <Typography variant="body1" component="div">
-              <Link className="CustomLink UnderlineLink">Click to upload</Link> or drag and drop the room scene
-              <Box component="div" mt={1} mb={1}>
-                <Typography variant="body2">
-                SVG, PNG, JPG or GIF (max. 3MB)
+              <Typography variant="body1" component="div">
+                <Link className="CustomLink UnderlineLink">
+                  Click to upload
+                </Link>{" "}
+                or drag and drop the room scene
+                <Box component="div" mt={1} mb={1}>
+                  <Typography variant="body2">
+                    SVG, PNG, JPG or GIF (max. 3MB)
+                  </Typography>
+                </Box>
               </Typography>
-              </Box>
-              
-            </Typography>
             </Box>
-            
           </Box>
           <List className="ProductListBox ProductListBoxSecond">
             {uploadedFiles.map((file, idx) => (
@@ -173,7 +176,12 @@ const DesignAccordion = ({ index, onDesignChange }) => {
                   </>
                 }
               >
-                <Box className="FileIconCell"><InsertPhotoOutlinedIcon color="primary" className="FilesIcon" /></Box>
+                <Box className="FileIconCell">
+                  <InsertPhotoOutlinedIcon
+                    color="primary"
+                    className="FilesIcon"
+                  />
+                </Box>
                 <Box className="ProductListInfo">
                   <Typography
                     variant="body1"
@@ -198,7 +206,7 @@ const DesignAccordion = ({ index, onDesignChange }) => {
           <ProductSelection
             onSubmitDesignDetails={handleOnSubmitDesignDetails}
           />
-          
+
           {/*<FormControl fullWidth margin="normal">
           <InputLabel>Type</InputLabel>
           <Select value={selectedType} label="Type" onChange={handleTypeChange}>
@@ -236,7 +244,11 @@ const DesignAccordion = ({ index, onDesignChange }) => {
 const RequestStep2Accordion = ({ count }) => {
   const [allDesigns, setAllDesigns] = useState({});
   const [isNextEnabled, setIsNextEnabled] = useState(false);
-  const { dispatch } = useStepContext();
+  const [count2D, setCount2D] = useState(1);
+  const [count3D, setCount3D] = useState(1);
+  const [isGenericPattern, setIsGenericPattern] = useState(false);
+  const { dispatch, state } = useStepContext();
+  const { projectInformation } = state;
 
   const handleDesignChange = (index, designData) => {
     setAllDesigns((prevDesigns) => {
@@ -255,16 +267,41 @@ const RequestStep2Accordion = ({ count }) => {
 
   const handleClick = () => {
     console.log("ALL DESIGNS:", allDesigns);
+    console.log("count2D:", count2D);
+    console.log("count3D:", count3D);
+
+    const payload = {
+      ...projectInformation,
+      count2D: count2D,
+      count3D: count3D,
+      isGenericPattern: isGenericPattern,
+    };
+
     dispatch({ type: "SET_DESIGN_DETAILS", payload: allDesigns });
+    dispatch({ type: "SET_PROJECT_INFO", payload: payload });
     dispatch({ type: "NEXT_STEP" });
   };
   return (
     <Box>
+      <DoYouRequire
+        count2D={count2D}
+        setCount2D={setCount2D}
+        count3D={count3D}
+        setCount3D={setCount3D}
+        isGenericPattern={isGenericPattern}
+        setIsGenericPattern={setIsGenericPattern}
+      />
       {Array.from({ length: count }, (_, index) => (
         <DesignAccordion
           key={index}
           index={index}
           onDesignChange={handleDesignChange}
+          // count2D={count2D}
+          // setCount2D={setCount2D}
+          //count3D={count3D}
+          //setCount3D={setCount3D}
+          //isGenericPattern={isGenericPattern}
+          //setIsGenericPattern={setIsGenericPattern}
         />
       ))}
       <Box className="BottomActionButtton">

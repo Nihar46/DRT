@@ -22,6 +22,9 @@ const DesignRequestStep3 = () => {
   const { designDetails, projectInformation } = state;
   const { submitRequest } = useAccountManager();
 
+  console.log("Design Details:", designDetails);
+  console.log("Project Information:", projectInformation);
+
   const handleClick = () => {
     if (state.projectInformation && state.designDetails) {
       submitRequest(state.projectInformation, state.designDetails);
@@ -75,6 +78,30 @@ const DesignRequestStep3 = () => {
               {projectInformation.roomScenesFloorPlans || "N/A"}
             </Typography>
           </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              2D count
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.count2D || "N/A"}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              3D count
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.count3D || "N/A"}
+            </Typography>
+          </Box>
+          <Box className="RequestInfoContent">
+            <Typography variant="body2" component="div" className="InfoLabel">
+              Generic Pattern
+            </Typography>
+            <Typography variant="body1" component="div" className="InfoData">
+              {projectInformation.isGenericPattern ? "Yes" : "No"}
+            </Typography>
+          </Box>
         </Box>
         <Box className="NoteInfo">
           <Typography variant="body2" component="div" className="InfoLabel">
@@ -85,6 +112,7 @@ const DesignRequestStep3 = () => {
           </Typography>
         </Box>
       </Box>
+      <Box></Box>
       <Box className="RequestAccordionBox">
         {/* Design Details */}
         {Object.entries(designDetails).map(([index, design]) => (

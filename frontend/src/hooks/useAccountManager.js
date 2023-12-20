@@ -43,11 +43,13 @@ const useAccountManager = () => {
     try {
       console.log("first:", projectInformation);
       console.log("second:", designDetails);
+      const userId = localStorage.getItem("userId");
       const response = await axios.post(
         "/account-manager-sales-rep/create-request",
         {
           projectInformation,
           designDetails,
+          userId,
         },
         { withCredentials: true, credentials: "include" }
       );

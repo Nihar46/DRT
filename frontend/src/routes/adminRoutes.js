@@ -27,8 +27,12 @@ const PrivateRoutes = ({ as: Component, ...props }) => {
 };
 
 const appNav = [
-  {
+  /*{
     path: "/admin-landing-screen",
+    element: <AdminLandingScreen />,
+  },*/
+  {
+    path: "/dashboard",
     element: <AdminLandingScreen />,
   },
   {

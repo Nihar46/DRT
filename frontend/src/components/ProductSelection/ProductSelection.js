@@ -17,6 +17,26 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useStepContext } from "../../context/StepFormContext";
 import AddIcon from "@mui/icons-material/Add";
 
+const data = {
+  brands: {
+    Tarkett: {
+      styles: ["Heritage", "Fireview"],
+      colors: ["Oak 1 Strip", "Oak Old Grey 1 Strip"],
+      installations: ["Random", "Quarter Turn"],
+    },
+    Tandus: {
+      styles: ["Highline", "Northstar"],
+      colors: ["White 1 Strip", "Tan 1 Strip"],
+      installations: ["Random", "Quarter Turn", "Monolithic"],
+    },
+    Jhonsonite: {
+      styles: ["Blusmart", "Prestige"],
+      colors: ["Red 1 Strip", "Blue 1 Strip"],
+      installations: ["Random", "Quarter Turn", "Mono Chrome"],
+    },
+  },
+};
+
 const ProductSelection = ({ onSubmitDesignDetails }) => {
   const { state, dispatch } = useStepContext();
   const [selections, setSelections] = useState({
@@ -24,6 +44,12 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
     style: "",
     color: "",
     installation: "",
+  });
+
+  const [filteredOptions, setFilteredOptions] = useState({
+    styles: [],
+    colors: [],
+    installations: [],
   });
   const [productList, setProductList] = useState([]);
   const [editIndex, setEditIndex] = useState(-1);
@@ -38,6 +64,21 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
       ...prevSelections,
       [name]: value,
     }));
+
+    if (name === "brand") {
+      const brandData = data.brands[value];
+      setFilteredOptions({
+        styles: brandData.styles || [],
+        colors: brandData.colors || [],
+        installations: brandData.installations || [],
+      });
+      setSelections((prev) => ({
+        ...prev,
+        style: "",
+        color: "",
+        installation: "",
+      }));
+    }
   };
 
   const canAddOrEditProduct = Object.values(selections).every((x) => x);
@@ -101,7 +142,7 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
                 name="brand"
                 onChange={handleChange}
               >
-                {["Tarkett", "Vog", "Jest"].map((brand) => (
+                {["Tarkett", "Tandus", "Jhonsonite"].map((brand) => (
                   <MenuItem key={brand} value={brand}>
                     {brand}
                   </MenuItem>
@@ -121,7 +162,12 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
                 name="style"
                 onChange={handleChange}
               >
-                {["Heritage", "Northstar", "Westend"].map((style) => (
+                {/*["Heritage", "Northstar", "Westend"].map((style) => (
+                  <MenuItem key={style} value={style}>
+                    {style}
+                  </MenuItem>
+                ))*/}
+                {filteredOptions.styles.map((style) => (
                   <MenuItem key={style} value={style}>
                     {style}
                   </MenuItem>
@@ -141,7 +187,12 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
                 name="color"
                 onChange={handleChange}
               >
-                {["red", "blue", "green"].map((color) => (
+                {/*["red", "blue", "green"].map((color) => (
+                  <MenuItem key={color} value={color}>
+                    {color}
+                  </MenuItem>
+                ))*/}
+                {filteredOptions.colors.map((color) => (
                   <MenuItem key={color} value={color}>
                     {color}
                   </MenuItem>
@@ -163,13 +214,18 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
                 name="installation"
                 onChange={handleChange}
               >
-                {["random", "quarter turn", "surprise me"].map(
+                {/*["random", "quarter turn", "surprise me"].map(
                   (installation) => (
                     <MenuItem key={installation} value={installation}>
                       {installation}
                     </MenuItem>
                   )
-                )}
+                  )*/}
+                {filteredOptions.installations.map((installation) => (
+                  <MenuItem key={installation} value={installation}>
+                    {installation}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -188,67 +244,75 @@ const ProductSelection = ({ onSubmitDesignDetails }) => {
       </Box>
       {/* List of selected products */}
       <Box className="ProductListBoxFirst">
-        <Box mt={3}><Typography variant="h4" component="div" className="Lightgrey">Product</Typography></Box>
+        <Box mt={3}>
+          <Typography variant="h4" component="div" className="Lightgrey">
+            Product
+          </Typography>
+        </Box>
         <Box className="ProductListBoxFirstContainer">
-        {productList.map((product, index) => (
-          <Box
-            className="ProductListItemFirst"
-            key={index}
-            secondaryAction={
-              <>              
-                
-              </>
-            }
-          >
-            <Box className="ProductListInfoFirst">
-              <Box className="ProductTileContainer">
-              <Typography
-                variant="body1"
-                component="div"
-                className="ProductTile"
-                >
-                  <DeleteIcon edge="end" onClick={() => deleteProduct(index)} className="DeleteButton"/>
-              </Typography>
+          {productList.map((product, index) => (
+            <Box
+              className="ProductListItemFirst"
+              key={index}
+              secondaryAction={<></>}
+            >
+              <Box className="ProductListInfoFirst">
+                <Box className="ProductTileContainer">
+                  <Typography
+                    variant="body1"
+                    component="div"
+                    className="ProductTile"
+                  >
+                    <DeleteIcon
+                      edge="end"
+                      onClick={() => deleteProduct(index)}
+                      className="DeleteButton"
+                    />
+                  </Typography>
                 </Box>
-              <Typography
-                variant="body1"
-                component="div"
-                className="ProductName"
-              >
-                {product.brand}
-              </Typography>
-              <Typography
-                variant="body1"
-                component="div"
-                className="ProductStyle"
-              >
-                {product.style}
-              </Typography>
-              <Typography
-                variant="body1"
-                component="div"
-                className="ProductColor"
-              >
-                {product.color}
-              </Typography>
-              <Typography
-                variant="body1"
-                component="div"
-                className="ProductInstallation"
-              >
-                {product.installation}
-              </Typography>
-              <Typography edge="end" onClick={() => editProduct(index)} className="EditViewButton CustomLink UnderlineLink">
+                <Typography
+                  variant="body1"
+                  component="div"
+                  className="ProductName"
+                >
+                  {product.brand}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  component="div"
+                  className="ProductStyle"
+                >
+                  {product.style}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  component="div"
+                  className="ProductColor"
+                >
+                  {product.color}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  component="div"
+                  className="ProductInstallation"
+                >
+                  {product.installation}
+                </Typography>
+                <Typography
+                  edge="end"
+                  onClick={() => editProduct(index)}
+                  className="EditViewButton CustomLink UnderlineLink"
+                >
                   Edit View
                 </Typography>
-            </Box>
-            {/* <Typography variant="body1">
+              </Box>
+              {/* <Typography variant="body1">
               Brand: {product.brand}, Style: {product.style}, Color:{" "}
               {product.color}, Installation: {product.installation}
             </Typography> */}
-          </Box>
-        ))}
-          </Box>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );
